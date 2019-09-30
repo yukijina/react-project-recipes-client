@@ -10,7 +10,7 @@ export const sendingRecipes = recipes => {
             title: recipe.title, 
             recipeId: recipe.id,
             image: recipe.image,
-            steps: recipe.analyzedInstructions[0].steps,
+            instructions: recipe.instructions,
             ingredients: recipe.extendedIngredients
         }
     })
