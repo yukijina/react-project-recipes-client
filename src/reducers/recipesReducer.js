@@ -2,7 +2,7 @@ export default (state = {
     recipes: null,
     loading: false
 }, action) => {
-    console.log(action)
+    console.log(action.type)
     switch(action.type) {
         case 'LOADING_RECIPES': 
             return {...state, loading: true}
