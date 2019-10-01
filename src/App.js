@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import { fetchRecipes } from './actions/recipeActions.js';
-import RandomRecipesCotnainer from './containers/RandomRecipesContainer.js';
+import RandomRecipesContainer from './containers/RandomRecipesContainer.js';
+import Login from './components/Login.js';
+import { getCurrentUser } from './actions/currentUsers.js'
 
 class App extends Component {
 
   componentDidMount(){
+    this.props.getCurrentUser()
     this.props.fetchRecipes()
   }
 
@@ -14,7 +17,8 @@ class App extends Component {
     return (
       <div>
         "Hello my React App!"
-        <RandomRecipesCotnainer />
+        <Login />
+        <RandomRecipesContainer />
       </div>
     );
   }
@@ -27,4 +31,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps,{ fetchRecipes })(App);
+export default connect(mapStateToProps,{ getCurrentUser, fetchRecipes })(App);
