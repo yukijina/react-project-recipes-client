@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import { fetchRecipes } from './actions/recipeActions.js';
+import Home from './components/Home.js';
+import NavBar from './components/NavBar.js';
 import RandomRecipesContainer from './containers/RandomRecipesContainer.js';
 import Login from './components/Login.js';
 import Logout from './components/Logout.js';
 import { getCurrentUser } from './actions/currentUsers.js'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class App extends Component {
 
@@ -16,11 +19,19 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        "Hello my React App!"
-        {this.props.currentUser ? <Logout /> : <Login />}
-       <RandomRecipesContainer />
-      </div>
+      <Router>
+        <NavBar />
+        <div className="App">
+          {/* <NavBar /> */}
+          <Switch>
+            <Route exact path='/' component={Home}/>
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/logout' component={Logout}/>
+            <Route exact path='/recipes' component={RandomRecipesContainer}/>
+           {/* {this.props.currentUser ? <Logout /> : <Login />} */}
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
