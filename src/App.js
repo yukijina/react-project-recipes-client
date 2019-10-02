@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchRecipes } from './actions/recipeActions.js';
 import RandomRecipesContainer from './containers/RandomRecipesContainer.js';
 import Login from './components/Login.js';
+import Logout from './components/Logout.js';
 import { getCurrentUser } from './actions/currentUsers.js'
 
 class App extends Component {
@@ -17,8 +18,8 @@ class App extends Component {
     return (
       <div>
         "Hello my React App!"
-        <Login />
-        <RandomRecipesContainer />
+        {this.props.currentUser ? <Logout /> : <Login />}
+       <RandomRecipesContainer />
       </div>
     );
   }
@@ -26,9 +27,22 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    recipes: state.recipesReducer.recipes
+    recipes: state.recipesReducer.recipes,
+    currentUser: state.currentUsersReducer
   }
 }
 
 
 export default connect(mapStateToProps,{ getCurrentUser, fetchRecipes })(App);
+
+
+//route
+// import reactroutesr
+// import {link, Route}
+// /  (home)
+//search - recipe results (external api)
+//favorite  (internal api)
+//recipe  (external/internal api)
+//user show   favorite, review - model
+
+// recipe url, image, title, favor
