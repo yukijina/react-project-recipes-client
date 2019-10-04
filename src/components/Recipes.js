@@ -6,7 +6,8 @@ import { searchRecipes } from '../actions/recipeActions.js';
 
 class Recipes extends Component {
     state = {
-        query: ""
+        query: "",
+        diet: ""
     }
 
     handleInputChange = event => {
@@ -16,10 +17,18 @@ class Recipes extends Component {
         })
     }
 
+    handleSelectChange = event => {
+        this.setState({
+            ...this.state, diet: event.target.value
+        })
+    }
+
     handleSubmit = event => {
         event.preventDefault()
-        this.propssearchRecipes(this.state.query)
+        this.props.searchRecipes(this.state)
     }
+
+    
 
     render() {
         //console.log(this.props.recipes)
@@ -35,7 +44,7 @@ class Recipes extends Component {
     
                     <label>
                     Pick your favorite diet:
-                        <select onChange={this.handleSelectChange}>
+                        <select value={this.state.diet} onChange={this.handleSelectChange}>
                             <option>Select</option>
                             <option value="all">All</option>
                             <option value="glutenfree">Gluten Free</option>
@@ -50,7 +59,7 @@ class Recipes extends Component {
                 </form>
 
 
-                {this.props.recipes !== null? this.props.recipes.map(recipe => <div key={recipe.recipeId}><h2 >{recipe.title}</h2><img src={recipe.image}></img></div>) : null}
+                {this.props.recipes !== null? this.props.recipes.map(recipe => <div key={recipe.recipeId}><h2>{recipe.title}</h2><img src={recipe.image}></img></div>) : null}
 
         
 
