@@ -20,7 +20,8 @@ export const sendingRecipes = recipes => {
     }
 }
 
-export const fetchRecipes = ()=> {
+
+export const fetchRecipes = () => {
     const API_KEY = process.env.REACT_APP_APIKEY;
     return (dispatch) => {
         dispatch(loadingRecipes())
@@ -30,4 +31,16 @@ export const fetchRecipes = ()=> {
     }
 } 
 
+// search query
+export const searchRecipes = (query) => {
+    const API_KEY = process.env.REACT_APP_APIKEY;
+    console.log("fire",query)
+    return (dispatch) => {
+        dispatch(loadingRecipes())
+        return fetch(`https://api.spoonacular.com/recipes/search?query=${query}&apiKey=${API_KEY}`)
+        .then(resp => resp.json())
+        .then(recipes => console.log(recipes))
+        //.then(recipes => dispatch(sendingRecipes(recipes.results)))
+    }
 
+}
