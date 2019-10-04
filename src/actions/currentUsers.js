@@ -30,10 +30,11 @@ export const signup = userData => {
         .then(user =>  
            { 
             if (user.error) {
-                alert(user.error)
+                //alert(user.error)
             } else {
                 dispatch(setCurrentUser(user))
                 dispatch(resetSignupForm())
+                //history.push('/')
             }
             
         })
@@ -41,8 +42,7 @@ export const signup = userData => {
 }
 
 
-
-export const login = credentials => {
+export const login = (userData, history) => {
     return dispatch => {
         return fetch("http://localhost:3001/api/v1/login", {
             credentials: 'include',
@@ -50,14 +50,15 @@ export const login = credentials => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(credentials)
+            body: JSON.stringify(userData)
         })
         .then(resp => resp.json())
         .then(user => {
             if (user.error) {
-                alert(user.error)
+                //alert(user.error)
             } else {
                 dispatch(setCurrentUser(user))
+                history.push('/recipes')
             }
         })
     }
@@ -76,7 +77,7 @@ export const getCurrentUser = () => {
         .then(resp => resp.json())
         .then(user => {
             if (user.error) {
-                alert(user.error)
+                //alert(user.error)
             } else {
                 dispatch(setCurrentUser(user))
             }
