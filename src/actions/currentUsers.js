@@ -1,6 +1,5 @@
 import { resetSignupForm } from './signupForm.js'
 
-
 export const setCurrentUser = user => {
     return {
         type: 'SET_CURRENT_USER',
@@ -10,12 +9,13 @@ export const setCurrentUser = user => {
 
 export const clearCurrentUser = () => {
     return {
-        type: 'CLEAR_CURRENT_USER',
+        type: 'CLEAR_CURRENT_USER'
     }
 }
 
+
 //asynchronous
-export const signup = userData => {
+export const signup = (userData, history) => {
     console.log("action", userData)
     return dispatch => {
         return fetch("http://localhost:3001/api/v1/signup", {
@@ -34,7 +34,7 @@ export const signup = userData => {
             } else {
                 dispatch(setCurrentUser(user))
                 dispatch(resetSignupForm())
-                //history.push('/')
+                history.push('/recipes')
             }
             
         })
