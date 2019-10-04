@@ -15,7 +15,7 @@ class App extends Component {
 
   componentDidMount(){
     this.props.getCurrentUser()
-    //this.props.fetchRecipes()
+    this.props.fetchRecipes()
   }
 
   
