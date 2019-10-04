@@ -26,7 +26,7 @@ class App extends Component {
         <NavBar isLoggedin= {this.props.isLoggedin} />
         <div className="App">
           <Switch>
-            <Route exact path='/' render={() => <Home currentUser={this.props.currentUser} />}/>
+            <Route exact path='/' render={() => <Home isLoggedin={this.props.isLoggedin} />}/>
             <Route exact path='/login' component={Login} />
             <Route exact path='/logout' component={Logout}/>
             <Route exact path='/signup' component={Signup} />
