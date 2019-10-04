@@ -33,12 +33,11 @@ export const fetchRecipes = () => {
 } 
 
 // search query
-export const searchRecipes = (query) => {
+export const searchRecipes = (state) => {
     const API_KEY = process.env.REACT_APP_APIKEY;
     return (dispatch) => {
-        console.log("fire", query)
         dispatch(loadingRecipes())
-        return fetch(`https://api.spoonacular.com/recipes/search?query=${query}&apiKey=${API_KEY}`)
+        return fetch(`https://api.spoonacular.com/recipes/search?query=${state.query}&diet=${state.diet}&apiKey=${API_KEY}`)
         .then(resp => resp.json())
         .then(recipes => dispatch(sendingRecipes(recipes.results)))
     }
