@@ -7,6 +7,7 @@ import NavBar from './components/NavBar.js';
 import RandomRecipesContainer from './containers/RandomRecipesContainer.js';
 import Login from './components/Login.js';
 import Logout from './components/Logout.js';
+import Signup from './components/Signup.js';
 import { getCurrentUser } from './actions/currentUsers.js'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -14,21 +15,22 @@ class App extends Component {
 
   componentDidMount(){
     this.props.getCurrentUser()
-    this.props.fetchRecipes()
+    //this.props.fetchRecipes()
   }
 
+  
   render() {
+  
     return (
       <Router>
-        <NavBar />
+        <NavBar isLoggedin= {this.props.isLoggedin} />
         <div className="App">
-          {/* <NavBar /> */}
           <Switch>
-            <Route exact path='/' component={Home}/>
+            <Route exact path='/' render={() => <Home currentUser={this.props.currentUser} />}/>
             <Route exact path='/login' component={Login} />
             <Route exact path='/logout' component={Logout}/>
+            <Route exact path='/signup' component={Signup} />
             <Route exact path='/recipes' component={RandomRecipesContainer}/>
-           {/* {this.props.currentUser ? <Logout /> : <Login />} */}
           </Switch>
         </div>
       </Router>
@@ -39,7 +41,8 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     recipes: state.recipesReducer.recipes,
-    currentUser: state.currentUsersReducer
+    currentUser: state.currentUsersReducer,
+    isLoggedin: !!state.currentUsersReducer
   }
 }
 
