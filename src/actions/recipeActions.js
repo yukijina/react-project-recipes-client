@@ -9,7 +9,7 @@ export const sendingRecipes = recipes => {
         return {
             title: recipe.title, 
             recipeId: recipe.id,
-            image: recipe.image,
+            image: recipe.image.includes("http") ? recipe.image : `https://spoonacular.com/recipeImages/${recipe.image}`,
             instructions: recipe.instructions,
             ingredients: recipe.extendedIngredients
         }
@@ -19,6 +19,7 @@ export const sendingRecipes = recipes => {
         payload: recipeData
     }
 }
+
 
 
 export const fetchRecipes = () => {
@@ -34,13 +35,12 @@ export const fetchRecipes = () => {
 // search query
 export const searchRecipes = (query) => {
     const API_KEY = process.env.REACT_APP_APIKEY;
-    console.log("fire",query)
     return (dispatch) => {
+        console.log("fire", query)
         dispatch(loadingRecipes())
         return fetch(`https://api.spoonacular.com/recipes/search?query=${query}&apiKey=${API_KEY}`)
         .then(resp => resp.json())
-        .then(recipes => console.log(recipes))
-        //.then(recipes => dispatch(sendingRecipes(recipes.results)))
+        .then(recipes => dispatch(sendingRecipes(recipes.results)))
     }
 
 }
