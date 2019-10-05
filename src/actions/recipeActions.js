@@ -41,5 +41,16 @@ export const searchRecipes = (state) => {
         .then(resp => resp.json())
         .then(recipes => dispatch(sendingRecipes(recipes.results)))
     }
+}
 
+// Recipe Show (individual Recipe)
+export const recipeShow = (id) => {
+    const API_KEY = process.env.REACT_APP_APIKEY;
+    console.log("fire", id)
+    // return (dispatch) => {
+    //     dispatch(loadingRecipes())
+    //     return fetch(`https://api.spoonacular.com/recipes/${id}/information&apiKey=${API_KEY}`)
+    //     .then(resp => resp.json())
+    //     .then(recipes => console.log(recipes))
+    // }
 }

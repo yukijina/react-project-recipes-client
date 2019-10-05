@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { searchRecipes } from '../actions/recipeActions.js';
+import { recipeShow } from '../actions/recipeActions.js';
 //import Recipe from './Recipe.js'
 
 
@@ -25,15 +26,17 @@ class Recipes extends Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        this.props.searchRecipes(this.state)
+        //this.props.searchRecipes(this.state)
     }
 
-    
+    handleClick = recipeId => {
+        console.log("now in click", recipeId)
+    }
 
     render() {
         //console.log(this.props.recipes)
         return(
-            <div>
+            <div className="Recipes">
                 <h1>Today's choice</h1>
                 
                 <form onSubmit={this.handleSubmit}>
@@ -59,7 +62,7 @@ class Recipes extends Component {
                 </form>
 
 
-                {this.props.recipes !== null? this.props.recipes.map(recipe => <div key={recipe.recipeId}><h2>{recipe.title}</h2><img src={recipe.image}></img></div>) : null}
+                {this.props.recipes !== null? this.props.recipes.map(recipe => <div key={recipe.recipeId}><h2>{recipe.title}</h2><img src={recipe.image} onClick={() => this.handleClick(recipe.recipeId)}></img></div>) : null}
 
         
 
@@ -71,4 +74,4 @@ class Recipes extends Component {
 
 
 
-export default connect(null, {searchRecipes})(Recipes);
+export default connect(null, {searchRecipes, recipeShow})(Recipes);
