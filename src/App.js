@@ -10,6 +10,7 @@ import Logout from './components/Logout.js';
 import Signup from './components/Signup.js';
 import { getCurrentUser } from './actions/currentUsers.js'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Recipe from './components/Recipe.js';
 
 class App extends Component {
 
@@ -23,15 +24,16 @@ class App extends Component {
   
     return (
       <Router>
-        <NavBar isLoggedin= {this.props.isLoggedin} />
+        {this.props.isLoggedin ? <NavBar isLoggedin= {this.props.isLoggedin} /> : <Home />}
         <div className="App">
 
           <Switch>
-            <Route exact path='/' render={() => <Home isLoggedin={this.props.isLoggedin} />}/>
+            {/* <Route exact path='/' render={() => <Home isLoggedin={this.props.isLoggedin} />}/> */}
             <Route exact path='/login' component={Login} />
             <Route exact path='/logout' component={Logout}/>
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/recipes' component={RandomRecipesContainer}/>
+            <Route exact path='/recipe/:id' render={() => <Recipe recipe={this.props.recipe}/>} />
           </Switch>
         </div>
       </Router>
