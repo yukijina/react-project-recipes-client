@@ -1,56 +1,40 @@
-export const loadingRecipes = () => {
-    return {
-        type: 'LOADING_RECIPES'
-    }
-}
+import { resetRecipes } from './recipesActions.js'
 
-export const sendingRecipes = recipes => {
-    const recipeData = recipes.map(recipe => {
-        return {
-            title: recipe.title, 
-            recipeId: recipe.id,
-            image: recipe.image.includes("http") ? recipe.image : `https://spoonacular.com/recipeImages/${recipe.image}`,
-            instructions: recipe.instructions,
-            ingredients: recipe.extendedIngredients
-        }
-    })
+
+export const sendingRecipeDetails = recipe => {
+    const recipeData = {
+        title: recipe.title, 
+        recipeId: recipe.id,
+        image: recipe.image.includes("http") ? recipe.image : `https://spoonacular.com/recipeImages/${recipe.image}`,
+        readyInMinutes: recipe.readyInMinutes,
+        servings: recipe.servings,
+        vegetarian: recipe.vegetarian,
+        vegan: recipe.vegan,
+        glutenfree: recipe.glutenFree,
+        dairyfree: recipe.dairyFree,
+        ketogenic: recipe.ketogenic,
+        whole30: recipe.whole30,
+        instructions: recipe.instructions,
+        ingredients: recipe.extendedIngredients
+    }
     return {
-        type: 'FETCH_RECIPES',
+        type: 'INDIVIDUAL_RECIPE',
         payload: recipeData
     }
 }
 
 
-
-export const fetchRecipes = () => {
-    const API_KEY = process.env.REACT_APP_APIKEY;
-    return (dispatch) => {
-        dispatch(loadingRecipes())
-        return fetch(`https://api.spoonacular.com/recipes/random?number=3&apiKey=${API_KEY}`)
-        .then(resp => resp.json())
-        .then(recipeColletctions => dispatch(sendingRecipes(recipeColletctions.recipes)))
-    }
-} 
-
-// search query
-export const searchRecipes = (state) => {
-    const API_KEY = process.env.REACT_APP_APIKEY;
-    return (dispatch) => {
-        dispatch(loadingRecipes())
-        return fetch(`https://api.spoonacular.com/recipes/search?query=${state.query}&diet=${state.diet}&apiKey=${API_KEY}`)
-        .then(resp => resp.json())
-        .then(recipes => dispatch(sendingRecipes(recipes.results)))
-    }
-}
-
 // Recipe Show (individual Recipe)
-export const recipeShow = (id) => {
+export const recipeShow = (recipeId, history) => {
     const API_KEY = process.env.REACT_APP_APIKEY;
-    console.log("fire", id)
-    // return (dispatch) => {
-    //     dispatch(loadingRecipes())
-    //     return fetch(`https://api.spoonacular.com/recipes/${id}/information&apiKey=${API_KEY}`)
-    //     .then(resp => resp.json())
-    //     .then(recipes => console.log(recipes))
-    // }
+    console.log("fire on show", recipeId)
+    return (dispatch) => {
+        return fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${API_KEY}`)
+        .then(resp => resp.json())
+        .then(recipe => {
+             dispatch(sendingRecipeDetails(recipe))
+             history.push(`/recipes/${recipe.id}`)
+             dispatch(resetRecipes())
+         })
+    }
 }
