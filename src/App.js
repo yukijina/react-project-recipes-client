@@ -15,7 +15,7 @@ class App extends Component {
 
   componentDidMount(){
     this.props.getCurrentUser()
-    this.props.fetchRecipes()
+    //this.props.fetchRecipes()
   }
 
   
@@ -25,6 +25,7 @@ class App extends Component {
       <Router>
         <NavBar isLoggedin= {this.props.isLoggedin} />
         <div className="App">
+
           <Switch>
             <Route exact path='/' render={() => <Home isLoggedin={this.props.isLoggedin} />}/>
             <Route exact path='/login' component={Login} />
