@@ -1,4 +1,5 @@
 import { resetSignupForm } from './signupForm.js'
+import { resetLoginForm } from './loginForm.js'
 
 export const setCurrentUser = user => {
     return {
@@ -58,6 +59,7 @@ export const login = (userData, history) => {
                 //alert(user.error)
             } else {
                 dispatch(setCurrentUser(user))
+                dispatch(resetLoginForm())
                 history.push('/recipes')
             }
         })
