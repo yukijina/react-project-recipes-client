@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { searchRecipes } from '../actions/recipeActions.js';
+import { searchRecipes } from '../actions/recipesActions.js';
 import { recipeShow } from '../actions/recipeActions.js';
-//import Recipe from './Recipe.js'
+
 
 
 class Recipes extends Component {
@@ -26,11 +26,13 @@ class Recipes extends Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        //this.props.searchRecipes(this.state)
+        this.props.searchRecipes(this.state)
     }
 
-    handleClick = recipeId => {
-        console.log("now in click", recipeId)
+    // Render individual recipe in Recipe Show
+    handleClick = (recipeId, history) => {
+        console.log("now in click", recipeId, history)
+        this.props.recipeShow(recipeId, history)
     }
 
     render() {
@@ -62,9 +64,7 @@ class Recipes extends Component {
                 </form>
 
 
-                {this.props.recipes !== null? this.props.recipes.map(recipe => <div key={recipe.recipeId}><h2>{recipe.title}</h2><img src={recipe.image} onClick={() => this.handleClick(recipe.recipeId)}></img></div>) : null}
-
-        
+                {this.props.recipes !== null ? this.props.recipes.map(recipe => <div key={recipe.recipeId}><h2>{recipe.title}</h2><img src={recipe.image} onClick={() => this.handleClick(recipe.recipeId, this.props.hisotry)}></img></div>) : null}     
 
             </div>
         )
