@@ -1,5 +1,6 @@
 /* White color #FCF3F3 */
 /* Green color #2ecc71 */
+/* Dark Grey color #555 */
 
 /*--------------------------------*/
 /*BASIC SETUP*/
@@ -68,7 +69,8 @@ h1 {
 .main-nav li a:link,
 .main-nav li a:visited {
   padding: 8px 0;
-  color: #FCF3F3;
+  /* color: #FCF3F3;  change later*/
+  color: red;
   text-decoration: none;
   text-transform: uppercase;
   font-size: 90%;
@@ -138,6 +140,16 @@ input[type=submit]:active {
 .btn-ghost:active {
     border: 1px solid #2ecc71;
     color: #FCF3F3;
+}
+
+/*----RECIPES-----*/
+/* No background image */
+.Recipes {
+  background-image: none;
+  background-size: cover;
+  background-position: center;
+  background-color: #FCF3F3;
+  height: 100vh;
 }
 
 
