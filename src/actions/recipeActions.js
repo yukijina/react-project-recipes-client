@@ -18,8 +18,20 @@ export const sendingRecipeDetails = recipe => {
         ingredients: recipe.extendedIngredients
     }
     return {
-        type: 'INDIVIDUAL_RECIPE',
+        type: 'UPLOADING_RECIPE',
         payload: recipeData
+    }
+}
+
+export const incrementFavorite = () => {
+    return {
+        type: 'INCREMENT_FAVORITE',
+    }
+}
+
+export const resetRecipe = () => {
+    return {
+        type: 'RESET_RECIPE',
     }
 }
 
@@ -35,6 +47,32 @@ export const recipeShow = (recipeId, history) => {
              dispatch(sendingRecipeDetails(recipe))
              history.push(`/recipes/${recipe.id}`)
              dispatch(resetRecipes())
+         })
+    }
+}
+
+//Click "like" button
+export const clickLike = (recipe, userId) => {
+    console.log("fire clickLike", recipe, userId)
+    return (dispatch) => {
+        const dataForRails = {
+            title: recipe.title,
+            image: recipe.image,
+            api_id: recipe.recipeId,
+            favorite: {like: true, review: "", user_id: userId.userId}
+        }
+        return fetch(`http://localhost:3001/api/v1/recipes` ,{
+            credentials: "include",
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dataForRails)
+        })
+        .then(resp => resp.json())
+        .then(recipe => {
+             dispatch(incrementFavorite())
+        
          })
     }
 }
