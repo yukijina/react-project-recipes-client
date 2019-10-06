@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { clickLike } from '../actions/recipeActions.js';
 
 class Recipe extends Component {
-    handleClick = (recipeId) => {
-        console.log("like btn:", recipeId)
+    handleClick = (recipe, userId) => {
+        console.log("like btn:", recipe, userId)
+        this.props.clickLike(recipe, {userId})
     }
 
     render() {
@@ -13,7 +15,8 @@ class Recipe extends Component {
                 <h2>{this.props.recipe.title}</h2> 
                 <img src={this.props.recipe.image}></img>
                 </div>
-                <button onClick={() => this.handleClick(this.props.recipe.recipeId)}>&#10084; Like</button>
+                <button onClick={() => this.handleClick(this.props.recipe, this.props.userId)}>&#10084; Like: {this.props.favorite}</button>
+                <p>Write Review:</p>
                 <p>Read in Minutes: {this.props.recipe.readyInMinutes}</p>
                 <p>Servings: {this.props.recipe.servings}</p>
                 <p>Vegetarian: {this.props.recipe.vegetarian ? "Yes" : "No" }</p>
@@ -32,8 +35,10 @@ class Recipe extends Component {
 
 const mapStateToProps = state => {
     return {
-        recipe: state.recipeReducer.recipe
+        recipe: state.recipeReducer.recipe,
+        userId: state.currentUsersReducer.id,
+        favorite: state.recipeReducer.favorite
     }
 }
 
-export default connect(mapStateToProps)(Recipe);
+export default connect(mapStateToProps, { clickLike })(Recipe);
