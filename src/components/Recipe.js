@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { clickLike } from '../actions/recipeActions.js';
 
+
 class Recipe extends Component {
     handleClick = (recipe, userId) => {
         console.log("like btn:", recipe, userId)
