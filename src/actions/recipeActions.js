@@ -42,6 +42,14 @@ export const settingFavorite = (numberOfLikes) => {
     }
 }
 
+// export const updateReviewForm = (formData) => {
+//     console.log("updateReviewAction",formData)
+//     return {
+//         type: 'UPDATE_REVIEW_FORM',
+//         formData
+//     }
+// }
+
 
 
 // Recipe Show (loading individual Recipe)
@@ -61,14 +69,14 @@ export const recipeShow = (recipeId, history) => {
 }
 
 //Click "like" button
-export const clickLike = (recipe, userId) => {
-    console.log("fire clickLike", recipe, userId)
+export const clickLike = (recipe, userId, review) => {
+    console.log("fire clickLike", recipe, userId, review)
     return (dispatch) => {
         const dataForRails = {
             title: recipe.title,
             image: recipe.image,
             api_id: recipe.recipeId,
-            favorite: {like: true, review: "", user_id: userId.userId}
+            favorite: {like: true, review: review, user_id: userId}
         }
         return fetch(`http://localhost:3001/api/v1/recipes` ,{
             credentials: "include",
@@ -109,3 +117,27 @@ export const loadingFavorite = (recipeId) => {
          })
     }
 }
+
+//Post reviews to Rails API
+// export const postingReviews = (review, recipe, userId) => {
+//     console.log("fire will post reviews", recipe, userId, review)
+//     const dataForRails = {
+//         title: recipe.title,
+//         image: recipe.image,
+//         api_id: recipe.recipeId,
+//         favorite: {review: review, user_id: userId}
+//     }
+//     return (dispatch) => {
+//         return fetch(`http://localhost:3001/api/v1/recipes` ,{
+//             credentials: "include",
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify(dataForRails)
+//         })
+//         .then(resp => resp.json())
+//         .then(favorites => { console.log(favorites)
+//          })
+//     }
+// }
