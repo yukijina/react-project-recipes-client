@@ -1,6 +1,7 @@
 export default (state = {
     recipe: null,
-    favorite: 0
+    favorite: 0, 
+    reviews: []
 }, action) => {
     console.log("RecipeReducer:", action.type, action.payload)
     switch(action.type) {
@@ -16,6 +17,8 @@ export default (state = {
         case 'LOADING_NUMBER_OF_LIKES':
             return {...state, favorite: action.payload}
 
+        // case 'UPDATE_REVIEW_FORM':
+        //     return {...state, reviews:[action.formData.review]}
         default:
             return state
     }
