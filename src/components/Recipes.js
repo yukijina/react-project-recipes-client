@@ -4,7 +4,6 @@ import { searchRecipes } from '../actions/recipesActions.js';
 import { recipeShow } from '../actions/recipeActions.js';
 
 
-
 class Recipes extends Component {
     state = {
         query: "",
@@ -74,4 +73,4 @@ class Recipes extends Component {
 
 
 
-export default connect(null, {searchRecipes, recipeShow})(Recipes);
+export default connect(null, { searchRecipes, recipeShow })(Recipes);
