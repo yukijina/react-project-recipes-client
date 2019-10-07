@@ -12,7 +12,10 @@ export default (state = {
         
         case 'RESET_RECIPE':
             return {recipe: null, favorite: 0}
-            
+         
+        case 'LOADING_NUMBER_OF_LIKES':
+            return {...state, favorite: action.payload}
+
         default:
             return state
     }
