@@ -35,8 +35,16 @@ export const resetRecipe = () => {
     }
 }
 
+export const settingFavorite = (numberOfLikes) => {
+    return {
+        type: 'LOADING_NUMBER_OF_LIKES',
+        payload: numberOfLikes
+    }
+}
 
-// Recipe Show (individual Recipe)
+
+
+// Recipe Show (loading individual Recipe)
 export const recipeShow = (recipeId, history) => {
     const API_KEY = process.env.REACT_APP_APIKEY;
     console.log("fire on show", recipeId)
@@ -45,8 +53,9 @@ export const recipeShow = (recipeId, history) => {
         .then(resp => resp.json())
         .then(recipe => {
              dispatch(sendingRecipeDetails(recipe))
-             history.push(`/recipes/${recipe.id}`)
+             dispatch(loadingFavorite(recipeId))
              dispatch(resetRecipes())
+             history.push(`/recipes/${recipe.id}`)
          })
     }
 }
@@ -71,8 +80,32 @@ export const clickLike = (recipe, userId) => {
         })
         .then(resp => resp.json())
         .then(recipe => {
-             dispatch(incrementFavorite())
-        
+             dispatch(incrementFavorite())      
+         })
+    }
+}
+
+//Loading total number of Likes if a recipe has favorites
+export const loadingFavorite = (recipeId) => {
+    console.log("fire loading Favorite", recipeId)
+    return (dispatch) => {
+        return fetch(`http://localhost:3001/api/v1/recipes` ,{
+            credentials: "include",
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
+        .then(resp => resp.json())
+        .then(recipes => { console.log(recipes)
+            recipes.map(recipe => {
+                if (recipe.api_id === recipeId) {
+                    const numberOfLikes = recipe.favorites.filter(fav => fav.like).length
+                    dispatch(settingFavorite(numberOfLikes))
+                } else {
+                    
+                }
+            })
          })
     }
 }
