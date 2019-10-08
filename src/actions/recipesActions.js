@@ -31,22 +31,22 @@ export const sendingRecipes = recipes => {
 
 ////// async
 // fetch random recipe
-export const fetchRecipes = () => {
-    const API_KEY = process.env.REACT_APP_APIKEY;
-    return (dispatch) => {
-        dispatch(loadingRecipes())
-        return fetch(`https://api.spoonacular.com/recipes/random?number=3&apiKey=${API_KEY}`)
-        .then(resp => resp.json())
-        .then(recipeColletctions => dispatch(sendingRecipes(recipeColletctions.recipes)))
-    }
-} 
+// export const fetchRecipes = () => {
+//     const API_KEY = process.env.REACT_APP_APIKEY;
+//     return (dispatch) => {
+//         dispatch(loadingRecipes())
+//         return fetch(`https://api.spoonacular.com/recipes/random?number=3&apiKey=${API_KEY}`)
+//         .then(resp => resp.json())
+//         .then(recipeColletctions => dispatch(sendingRecipes(recipeColletctions.recipes)))
+//     }
+// } 
 
 // search query
 export const searchRecipes = (state) => {
     const API_KEY = process.env.REACT_APP_APIKEY;
     return (dispatch) => {
         dispatch(loadingRecipes())
-        dispatch(resetRecipe())
+        //dispatch(resetRecipe())
         return fetch(`https://api.spoonacular.com/recipes/search?query=${state.query}&diet=${state.diet}&apiKey=${API_KEY}`)
         .then(resp => resp.json())
         .then(recipes => dispatch(sendingRecipes(recipes.results)))
