@@ -42,6 +42,22 @@ export const settingFavorite = (numberOfLikes) => {
     }
 }
 
+export const settingReviews = (reviewArray) => {
+    return {
+        type: 'LOADING_REVIEWS',
+        payload: reviewArray
+    }
+}
+
+// Display single review a user just typed
+export const displayReview = (review) => {
+    console.log(review)
+    return {
+        type: 'DISPLAY_REVIEW',
+        payload: review
+    }
+}
+
 // export const updateReviewForm = (formData) => {
 //     console.log("updateReviewAction",formData)
 //     return {
@@ -61,14 +77,14 @@ export const recipeShow = (recipeId, history) => {
         .then(resp => resp.json())
         .then(recipe => {
              dispatch(sendingRecipeDetails(recipe))
-             dispatch(loadingFavorite(recipeId))
-             dispatch(resetRecipes())
+             //dispatch(loadingFavorite(recipeId))
+             //dispatch(resetRecipes())
              history.push(`/recipes/${recipe.id}`)
          })
     }
 }
 
-//Click "like" button
+//Click "like" button - post likes and review
 export const clickLike = (recipe, userId, review) => {
     console.log("fire clickLike", recipe, userId, review)
     return (dispatch) => {
@@ -76,7 +92,7 @@ export const clickLike = (recipe, userId, review) => {
             title: recipe.title,
             image: recipe.image,
             api_id: recipe.recipeId,
-            favorite: {like: true, review: review, user_id: userId}
+            favorite: {like: true, review: review,user_id: userId}
         }
         return fetch(`http://localhost:3001/api/v1/recipes` ,{
             credentials: "include",
@@ -106,10 +122,16 @@ export const loadingFavorite = (recipeId) => {
         })
         .then(resp => resp.json())
         .then(recipes => { console.log(recipes)
+            //debugger
             recipes.map(recipe => {
+                
                 if (recipe.api_id === recipeId) {
                     const numberOfLikes = recipe.favorites.filter(fav => fav.like).length
+
+                    const reviewArray = recipe.favorites.map(fav => fav.review)
+
                     dispatch(settingFavorite(numberOfLikes))
+                    dispatch(settingReviews(reviewArray))
                 } else {
                     
                 }
@@ -117,6 +139,11 @@ export const loadingFavorite = (recipeId) => {
          })
     }
 }
+
+
+
+
+
 
 //Post reviews to Rails API
 // export const postingReviews = (review, recipe, userId) => {
