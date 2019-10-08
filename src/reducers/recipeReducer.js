@@ -1,9 +1,11 @@
 export default (state = {
     recipe: null,
     favorite: 0, 
-    reviews: []
+    reviews: [],
+    review: ""
 }, action) => {
     console.log("RecipeReducer:", action.type, action.payload)
+    //debugger
     switch(action.type) {
         case 'UPLOADING_RECIPE':
             return {...state, recipe: action.payload}
@@ -16,6 +18,12 @@ export default (state = {
          
         case 'LOADING_NUMBER_OF_LIKES':
             return {...state, favorite: action.payload}
+
+        case 'LOADING_REVIEWS':
+            return {...state, reviews: action.payload} 
+
+        case 'DISPLAY_REVIEW':
+            return {...state, review: action.payload}
 
         // case 'UPDATE_REVIEW_FORM':
         //     return {...state, reviews:[action.formData.review]}
