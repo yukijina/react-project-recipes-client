@@ -12,7 +12,6 @@ import { getCurrentUser } from './actions/currentUsers.js'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Recipe from './components/Recipe.js';
 import User from './containers/User.js';
-import { logout } from './actions/currentUsers.js';
 import ProtectedRoute from './containers/ProtectedRoute.js'
 
 class App extends Component {
@@ -32,7 +31,7 @@ class App extends Component {
               <ProtectedRoute exact path='/logout' component={Logout}/>
               <ProtectedRoute exact path='/recipes' component={RandomRecipesContainer}/>
               <ProtectedRoute exact path='/recipes/:id' render={() => <Recipe recipe={this.props.recipe}/>} />
-              <ProtectedRoute exact path='/myaccount' render={() => <User currentUser={this.props.currentUser}/>} />
+              <ProtectedRoute exact path='/myaccount' component={User} />
    
               <Route exact path='/' render={() => <Home loggedin={this.props.loggedin} />}/>
               <Route exact path='/login' component={Login} />
@@ -56,4 +55,4 @@ const mapStateToProps = state => {
 
 
 // export default connect(mapStateToProps,{ getCurrentUser, fetchRecipes })(App);
-export default connect(mapStateToProps,{ getCurrentUser, logout })(App);
+export default connect(mapStateToProps,{ getCurrentUser })(App);
