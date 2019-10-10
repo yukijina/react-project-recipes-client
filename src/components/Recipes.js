@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { searchRecipes } from '../actions/recipesActions.js';
-import { recipeShow } from '../actions/recipeActions.js';
+import { recipeShow, loadingFavorite } from '../actions/recipeActions.js';
 
 
 class Recipes extends Component {
@@ -32,6 +32,7 @@ class Recipes extends Component {
     handleClick = (recipeId, history) => {
         console.log("now in click", recipeId, history)
         this.props.recipeShow(recipeId, history)
+        this.props.loadingFavorite(recipeId)
     }
 
     render() {
@@ -73,4 +74,4 @@ class Recipes extends Component {
 
 
 
-export default connect(null, { searchRecipes, recipeShow })(Recipes);
+export default connect(null, { searchRecipes, recipeShow, loadingFavorite  })(Recipes);

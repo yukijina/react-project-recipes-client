@@ -5,9 +5,11 @@ import { logout } from '../actions/currentUsers.js';
 const Logout = ({ logout }) => {
     
     return (    
-        <form onSubmit={logout}>
-            <input type="submit" value="Log Out"></input>
-        </form>
+        <div className="Logout">
+            <form onSubmit={logout}>
+                <input type="submit" value="CLICK and CHAO!" className="logoutInput"></input>   
+            </form>
+        </div>
     )
 }
 
