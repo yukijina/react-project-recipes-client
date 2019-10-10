@@ -1,6 +1,8 @@
 /* White color #FCF3F3 */
 /* Green color #2ecc71 */
 /* Dark Grey color #555 */
+/* Light Blue color #24b5da */ 
+/* Blue color #48c0df */
 
 /*--------------------------------*/
 /*BASIC SETUP*/
@@ -12,158 +14,170 @@
     box-sizing: border-box;
   }
   
-  html,
-  body{
-      background-color: #FCF3F3;
-      color: #555;
-      font-weight: 300;
-      font-size: 20px;
-      text-rendering: optimizeLegibility;
-      overflow-x: hidden;
-  }
-  
-  /*--------------------------------*/
-  /*REUSABLE COMPONENETS*/
-  /*--------------------------------*/
-  h1,
-  h2,
-  h3 {
-      font-weight: 300;
-      text-transform: uppercase;
-  }
-  
-  h1 {
-      margin-top: 0;
-      margin-bottom: 20px;
-      color: #FCF3F3;
-      font-size: 240%;
-      word-spacing: 4px;
-      letter-spacing: 1px;
-  }
-  
-  
-  /*--------------------------------*/
-  /*App Component - Home */
-  /*--------------------------------*/
-  .App {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(./images/breakfast.jpg);
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    background-attachment: fixed;
-  }
-  
-  
-  /* NavBar */
-  .main-nav {
-    float: right;
-    list-style:none;
-    margin-top: 55px;
-  }
-  
-  .main-nav li {
-    display: inline-block;
-    margin-left: 40px;
-  }
-  
-  .main-nav li a:link,
-  .main-nav li a:visited {
-    padding: 8px 0;
-    /* color: #FCF3F3;  change later*/
-    color: red;
-    text-decoration: none;
+html,
+body{
+    background-color: #FCF3F3;
+    color: #555;
+    font-weight: 300;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}
+
+/*--------------------------------*/
+/*REUSABLE COMPONENETS*/
+/*--------------------------------*/
+h1,
+h2,
+h3 {
+    font-weight: 300;
     text-transform: uppercase;
-    font-size: 90%;
-    border-bottom:2px solid transparent;
-    transition: border-bottom 0.2s;
-  
-  }
-  
-  .main-nav li a:hover,
-  .main-nav li a:active {
-    border-bottom:2px solid #2ecc71;
-  }
-  
-  
-  .Home {
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #FCF3F3;
+    font-size: 240%;
+    word-spacing: 4px;
+    letter-spacing: 1px;
+}
+
+
+/*--------------------------------*/
+/*App Component - Home */
+/*--------------------------------*/
+#root {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(./images/breakfast.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  background-attachment: fixed;
+}
+
+.MyAccount,
+.Logout,
+.Recipes {
+  background-color: #FCF3F3;
+  color: #555;
+  height: 100vh;
+}
+
+/* Home */
+.Home h3 {
+  color:#FCF3F3;
+  margin-bottom: 40px;
+}
+
+/* NavBar */
+.main-nav {
+  float: right;
+  list-style:none;
+  margin-top: 55px;
+}
+
+.main-nav li {
+  display: inline-block;
+  margin-left: 40px;
+}
+
+.main-nav li a:link,
+.main-nav li a:visited {
+  padding: 8px 0;
+  color:#48c0df;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 90%;
+  border-bottom:2px solid transparent;
+  transition: border-bottom 0.2s;
+
+}
+
+.main-nav li a:hover,
+.main-nav li a:active {
+  border-bottom:2px solid #24b5da;
+}
+
+
+.Home {
+  position: absolute;
+  width: 1140px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*----BUTTONS-----*/
+button {
+  background: none;
+  border: none;
+}
+
+.btn:link,
+.btn:visited {
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: 300;
+    font-size: 20px;
+    text-decoration: none;
+    border-radius: 200px;
+    transition: background-color 0.2s, border 0.2s, color 0.2s;
+} 
+
+.btn-full:link,
+.btn-full:visited {
+    background-color: #48c0df;
+    border: 1px solid #48c0df;
+    color: #FCF3F3;
+    margin-right: 15px;
+}
+
+.btn-ghost:link,
+.btn-ghost:visited {
+    border: 1px solid #48c0df;
+    color: #48c0df;
+}
+
+.btn:hover,
+.btn:active {
+    background-color: #48c0df;
+}
+
+.btn-full:hover,
+.btn-full:active {
+    border: 1px solid #48c0df;
+}
+
+.btn-ghost:hover,
+.btn-ghost:active {
+    border: 1px solid #48c0df;
+    color: #FCF3F3;
+}
+
+/*----RECIPES-----*/
+/* No background image */
+.Recipes {
+background-image: none;
+background-size: cover;
+background-position: center;
+background-color: #FCF3F3;
+height: 100vh;
+}
+
+/* Logout */
+.logoutInput {
+    border: none;
+    background-color: #FCF3F3;
+    color: #555;
+    font-size: 1.25rem;
     position: absolute;
-    width: 1140px;
+    width: 1140px; 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
-  
-  /*----BUTTONS-----*/
-  button {
-    background: none;
-    border: none;
-  }
-  
-  .btn:link,
-  .btn:visited {
-      display: inline-block;
-      padding: 10px 30px;
-      font-weight: 300;
-      font-size: 20px;
-      text-decoration: none;
-      border-radius: 200px;
-      transition: background-color 0.2s, border 0.2s, color 0.2s;
-  } 
-  
-  .btn-full:link,
-  .btn-full:visited {
-      background-color: #2ecc71;
-      border: 1px solid #2ecc71;
-      color: #FCF3F3;
-      margin-right: 15px;
-  }
-  
-  .btn-ghost:link,
-  .btn-ghost:visited {
-      border: 1px solid #2ecc71;
-      color: #2ecc71;
-  }
-  
-  .btn:hover,
-  .btn:active,
-  input[type=submit]:hover,
-  input[type=submit]:active {
-      background-color: #2ecc71;
-  }
-  
-  .btn-full:hover,
-  .btn-full:active {
-      border: 1px solid #2ecc71;
-  }
-  
-  .btn-ghost:hover,
-  .btn-ghost:active {
-      border: 1px solid #2ecc71;
-      color: #FCF3F3;
-  }
-  
-  /*----RECIPES-----*/
-  /* No background image */
-  .Recipes {
-    background-image: none;
-    background-size: cover;
-    background-position: center;
-    background-color: #FCF3F3;
-    height: 100vh;
-  }
+}
 
-  .logoutInput {
-      border: none;
-      background-color: transparent;
-      color: #FCF3F3;
-      font-size: 1.25rem;
-      position: absolute;
-      width: 1140px; 
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-  }
-
-  .logoutInput:hover {
-    background-color: transparent;
-  }
+.logoutInput[type=submit]:hover,
+.logoutInput[type=submit]:active {
+    border-style: dotted;
+} 
