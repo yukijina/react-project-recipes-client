@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { searchRecipes } from '../actions/recipesActions.js';
 import { recipeShow, loadingFavorite } from '../actions/recipeActions.js';
 
-
 class Recipes extends Component {
     state = {
         query: "",
