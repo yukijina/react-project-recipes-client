@@ -28,7 +28,8 @@ class App extends Component {
           <Switch>
               <ProtectedRoute exact path='/logout' component={Logout}/>
               <ProtectedRoute exact path='/recipes' component={RandomRecipesContainer}/>
-              <ProtectedRoute exact path='/recipes/:id' render={() => <Recipe recipe={this.props.recipe}/>} />
+              {/* <ProtectedRoute exact path='/recipes/:id' render={() => <Recipe recipe={this.props.recipe}/>} /> */}
+              <ProtectedRoute exact path='/recipes/:id' component={Recipe} />
               <ProtectedRoute exact path='/myaccount' component={User} />
    
               <Route exact path='/' render={() => <Home loggedin={this.props.loggedin} />}/>
