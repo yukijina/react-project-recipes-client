@@ -11,8 +11,7 @@ const NavBar = (props) => {
                     <li><Link to="/recipes">Recipes</Link></li>
                     <li><Link to="/myaccount">My account</Link></li>
                     <li><Link to="/logout">Log Out</Link></li>
-                </ul>
-            
+                </ul>           
         </div>
     )
 }
