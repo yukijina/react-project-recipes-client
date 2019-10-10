@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
-//import { fetchRecipes } from './actions/recipesActions.js';
 import Home from './components/Home.js';
 import NavBar from './components/NavBar.js';
-import RandomRecipesContainer from './containers/RandomRecipesContainer.js';
 import Login from './components/Login.js';
 import Logout from './components/Logout.js';
 import Signup from './components/Signup.js';
+import RandomRecipesContainer from './containers/RandomRecipesContainer.js';
 import { getCurrentUser } from './actions/currentUsers.js'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Recipe from './components/Recipe.js';
@@ -17,7 +16,6 @@ import ProtectedRoute from './containers/ProtectedRoute.js'
 class App extends Component {
   componentDidMount(){
     this.props.getCurrentUser()
-    //this.props.fetchRecipes()
   }
 
   render() {
@@ -53,6 +51,4 @@ const mapStateToProps = state => {
   }
 }
 
-
-// export default connect(mapStateToProps,{ getCurrentUser, fetchRecipes })(App);
 export default connect(mapStateToProps,{ getCurrentUser })(App);
