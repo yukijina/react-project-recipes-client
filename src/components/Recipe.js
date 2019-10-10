@@ -31,6 +31,18 @@ class Recipe extends Component {
 
     render() {
         const renderReview = this.props.reviews.map(review => <li key={review}>{review}</li>)
+
+        const ingredients = this.props.recipe.ingredients.map(ing => {
+          return (
+            <ul>
+            <li>{ing.name}</li>
+            <li>{ing.original}</li>
+            <li>{ing.amount} {ing.unit}</li>
+            </ul>
+            )
+          }
+          )
+
     return(
             <div className="Recipe">
                 <div>
@@ -49,8 +61,8 @@ class Recipe extends Component {
                 <p>Whole30: {this.props.recipe.whole30 ? "Yes" : "No" }</p>
                 <p>Instructions:{this.props.recipe.instructions}</p>
                 
-                {/* <ul>{this.props.ingredients.map(ing => <li>{ing.name}</li><li>{ing.original}</li><li>{ing.amount}: {ing.unit}</li>)}</ul> */}
-                {/* {ingredients} */}
+            
+                <ul>{ingredients}</ul>
 
                 <form onSubmit={(event) => this.handleSubmit(event, this.props.recipe, this.props.userId)}>
                     <input type="text" name="review" value={this.state.review} onChange={this.handleInputChange}></input>
@@ -59,7 +71,7 @@ class Recipe extends Component {
                 
                 {this.props.review ? `${this.props.review} by ${this.props.currentUser}` : null}
 
-                <ul>{renderReview}</ul>
+                {renderReview}
                
             </div>
         )
