@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { searchRecipes } from '../actions/recipesActions.js';
 import { recipeShow, loadingFavorite } from '../actions/recipeActions.js';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+
+
 
 class Recipes extends Component {
+
     state = {
         query: "",
         diet: ""
@@ -28,39 +35,37 @@ class Recipes extends Component {
     }
 
     // Render individual recipe in Recipe Show
-    handleClick = (recipeId, history) => {
-        console.log("now in click", recipeId, history)
-        this.props.recipeShow(recipeId, history)
-        this.props.loadingFavorite(recipeId)
+    handleClick = (apiId, history) => {
+        console.log("now in click", apiId, history)
+        this.props.recipeShow(apiId, history)
+        this.props.loadingFavorite(apiId)
     }
 
     render() {
+        
         //console.log(this.props.recipes)
         return(
             <div className="Recipes">
                 <h1>Today's choice</h1>
                 
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                    Search or leave blank:
-                        <input type="text" name="query" value={this.state.query} placeholder="e.g.burger" onChange={this.handleInputChange}></input>
-                    </label>
-    
-                    <label>
+                <form onSubmit={this.handleSubmit} style={{marginTop: "6%"}}>
+                    Search : <TextField type="text" name="query" value={this.state.query} placeholder="e.g.burger" onChange={this.handleInputChange} style={{marginLeft: "10px", marginRight: "10px"}} />
+                
                     Pick your favorite diet:
-                        <select value={this.state.diet} onChange={this.handleSelectChange}>
-                            <option>Select</option>
-                            <option value="all">All</option>
-                            <option value="glutenfree">Gluten Free</option>
-                            <option value="ketgenic">Ketogenic</option>
-                            <option value="vegetarian">Vegetarian</option>
-                            <option value="vegn">Vegan</option>
-                            <option value="paleo">Paleo</option>
-                            <option value="whole30">Whole 30</option>
-                        </select>
-                    </label>
-                    <input type="submit" value="Submit"></input>
-                </form>
+                        <Select value={this.state.diet} onChange={this.handleSelectChange}>
+                            <MenuItem>Select</MenuItem>
+                            <MenuItem value="all">All</MenuItem>
+                            <MenuItem value="glutenfree">Gluten Free</MenuItem>
+                            <MenuItem value="ketgenic">Ketogenic</MenuItem>
+                            <MenuItem value="vegetarian">Vegetarian</MenuItem>
+                            <MenuItem value="vegn">Vegan</MenuItem>
+                            <MenuItem value="paleo">Paleo</MenuItem>
+                            <MenuItem value="whole30">Whole 30</MenuItem>
+                        </Select>
+                    
+                   
+                    <input type="submit" value="Search" className="btn btn-full" style={{marginLeft: "15px"}}></input>
+                    </form>
 
 
                 {this.props.recipes !== null ? this.props.recipes.map(recipe => <div key={recipe.recipeId}><h2>{recipe.title}</h2><img src={recipe.image} onClick={() => this.handleClick(recipe.recipeId, this.props.hisotry)}></img></div>) : null}     
@@ -69,8 +74,6 @@ class Recipes extends Component {
         )
     }
 }
-
-
 
 
 export default connect(null, { searchRecipes, recipeShow, loadingFavorite  })(Recipes);

@@ -76,8 +76,8 @@ export const recipeShow = (recipeId, history) => {
         return fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${API_KEY}`)
         .then(resp => resp.json())
         .then(recipe => {
-             dispatch(sendingRecipeDetails(recipe))
              //dispatch(loadingFavorite(recipeId))
+             dispatch(sendingRecipeDetails(recipe))
              //dispatch(resetRecipes())
              history.push(`/recipes/${recipe.id}`)
          })
@@ -110,8 +110,8 @@ export const clickLike = (recipe, userId, review) => {
 }
 
 //Loading total number of Likes if a recipe has favorites
-export const loadingFavorite = (recipeId) => {
-    console.log("fire loading Favorite", recipeId)
+export const loadingFavorite = (apiId) => {
+    console.log("fire loading Favorite", apiId)
     return (dispatch) => {
         return fetch(`http://localhost:3001/api/v1/recipes` ,{
             credentials: "include",
@@ -125,7 +125,7 @@ export const loadingFavorite = (recipeId) => {
             //debugger
             recipes.map(recipe => {
                 
-                if (recipe.api_id === recipeId) {
+                if (recipe.api_id === apiId) {
                     const numberOfLikes = recipe.favorites.filter(fav => fav.like).length
 
                     const reviewArray = recipe.favorites.map(fav => fav.review)
