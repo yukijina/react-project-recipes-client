@@ -6,12 +6,9 @@ class User extends Component {
     render() {
         const user = this.props.currentUser
         return (
-            <div>
+            <div className="MyAccount">
                 <h2>My Account</h2>
-{/*             
-                {user ? <div><h2>Hello, {user.username}</h2><h3>Your Favorite Recipe:</h3><p>{user.recipes.map(r => r.title)}</p></div> : null} */}
                  {user ? <div><h2>Hello, {user.username}</h2><h3>Your Favorite Recipe:</h3></div> : null}
-                
             </div>
         )
     }
