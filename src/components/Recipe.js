@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { clickLike } from '../actions/recipeActions.js';
+import { clickLike, displayReview } from '../actions/recipeActions.js';
 
 
 class Recipe extends Component {
@@ -26,10 +26,12 @@ class Recipe extends Component {
         console.log("review submit", recipe, userId, this.state.review)
         // this.props.postingReviews(this.state.review, recipe, userId)
         this.props.clickLike(recipe, userId, this.state.review)
+        this.props.displayReview(this.state.review)
     }
 
     render() {
-        return(
+        const renderReview = this.props.reviews.map(review => <li key={review}>{review}</li>)
+    return(
             <div className="Recipe">
                 <div>
                 <h2>{this.props.recipe.title}</h2> 
@@ -45,15 +47,20 @@ class Recipe extends Component {
                 <p>Dairy Free: {this.props.recipe.dairyfree ? "Yes" : "No"}</p>
                 <p>Ketogenic: {this.props.recipe.ketogenic ? "Yes" : "No" }</p>
                 <p>Whole30: {this.props.recipe.whole30 ? "Yes" : "No" }</p>
-                {/* <p>Instructions:{this.props.recipe.instructions}</p>
-                <>this.props.ingredients.map(ing => <ul><li>{ing.name}</li><li>{ing.original}</li><li>{ing.amount}: {ing.unit}</li></ul>)}</> */}
-                <h2>Reviews: </h2>
+                <p>Instructions:{this.props.recipe.instructions}</p>
+                
+                {/* <ul>{this.props.ingredients.map(ing => <li>{ing.name}</li><li>{ing.original}</li><li>{ing.amount}: {ing.unit}</li>)}</ul> */}
+                {/* {ingredients} */}
+
                 <form onSubmit={(event) => this.handleSubmit(event, this.props.recipe, this.props.userId)}>
                     <input type="text" name="review" value={this.state.review} onChange={this.handleInputChange}></input>
                     <input type="submit" value="Add review"></input>
                 </form>
-
                 
+                {this.props.review ? `${this.props.review} by ${this.props.currentUser}` : null}
+
+                <ul>{renderReview}</ul>
+               
             </div>
         )
     }
@@ -65,8 +72,10 @@ const mapStateToProps = state => {
         userId: state.currentUsersReducer.id,
         favorite: state.recipeReducer.favorite,
        // reviewData: state.recipeReducer,
-        reviews: state.recipeReducer.reviews
+        reviews: state.recipeReducer.reviews,
+        review: state.recipeReducer.review,
+        currentUser: state.currentUsersReducer.username
     }
 }
 
-export default connect(mapStateToProps, { clickLike })(Recipe);
+export default connect(mapStateToProps, { clickLike, displayReview })(Recipe);
