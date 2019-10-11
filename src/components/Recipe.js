@@ -8,10 +8,18 @@ import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Fab from '@material-ui/core/Fab';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import LocalDiningIcon from '@material-ui/icons/LocalDining';
+import NatureIcon from '@material-ui/icons/Nature';
+import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
+import OutdoorGrillIcon from '@material-ui/icons/OutdoorGrill';
+import EmojiNatureIcon from '@material-ui/icons/EmojiNature';
+import MoodIcon from '@material-ui/icons/Mood';
+import CreateIcon from '@material-ui/icons/Create';
+import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Button from '@material-ui/core/Button';
 
 
 class Recipe extends Component {
@@ -43,16 +51,14 @@ class Recipe extends Component {
         
         const ingredients = this.props.recipe.ingredients.map(ing => {
             return (
-                <ul>
-                    <li>{ing.name}</li>
-                    <li>{ing.original}</li>
-                    <li>{ing.amount} {ing.unit}</li>
+                <ul key={ing.name}>
+                    <li key={ing.name}>{ing.original}: <span>{ing.amount} {ing.unit}</span></li>
                     </ul>
                     )
             }
         )
         
-        const renderReview = this.props.reviews.map(review => review !== "" ? <li key={review}>{review}</li>: null)
+        const renderReview = this.props.reviews.map(review => review !== "" ? <p key={review}><IconButton><MoodIcon /></IconButton>{review}</p>: null)
 
     return(
             <div className="Recipe">
@@ -73,27 +79,50 @@ class Recipe extends Component {
                 <IconButton onClick={() => this.handleClick(this.props.recipe, this.props.userId, this.state.review)} style={{color: "#e91e63"}}><Fab style={{backgroundColor: "#f8bbd0", color: "#e91e63"}}><FavoriteBorderIcon /></Fab><span style={{fontSize: "1.2rem"}}>&nbsp;Love:&nbsp;{this.props.favorite}</span></IconButton>
 
                 <div>
-                    <p>Read in Minutes: {this.props.recipe.readyInMinutes}</p>
-                    <p>Servings: {this.props.recipe.servings}</p>
-                    <p>Vegetarian: {this.props.recipe.vegetarian ? "Yes" : "No" }</p>
-                    <p>Vegan: {this.props.recipe.vegan ? "Yes" : "No" }</p>
-                    <p>Gluten Free: {this.props.recipe.glutenfree ? "Yes" : "No" }</p>
-                    <p>Dairy Free: {this.props.recipe.dairyfree ? "Yes" : "No"}</p>
-                    <p>Ketogenic: {this.props.recipe.ketogenic ? "Yes" : "No" }</p>
-                    <p>Whole30: {this.props.recipe.whole30 ? "Yes" : "No" }</p>
-                    <p>Instructions:{this.props.recipe.instructions}</p>
+                    <p><IconButton><ScheduleIcon /></IconButton>
+                    Read in Minutes: {this.props.recipe.readyInMinutes}</p>
+                    <p><IconButton><LocalDiningIcon /></IconButton>
+                    Servings: {this.props.recipe.servings}</p>
+                    <p><IconButton><NatureIcon /></IconButton>
+                    Vegetarian: {this.props.recipe.vegetarian ? "Yes" : "No" }</p>
+                    <p><IconButton><NatureIcon /></IconButton>
+                    Vegan: {this.props.recipe.vegan ? "Yes" : "No" }</p>
+                    <p><IconButton><DoneOutlineIcon /></IconButton>
+                    Gluten Free: {this.props.recipe.glutenfree ? "Yes" : "No" }</p>
+                    <p><IconButton><DoneOutlineIcon /></IconButton>
+                    Dairy Free: {this.props.recipe.dairyfree ? "Yes" : "No"}</p>
+                    <p><IconButton><OutdoorGrillIcon /></IconButton>
+                    Ketogenic: {this.props.recipe.ketogenic ? "Yes" : "No" }</p>
+                    <p><IconButton><EmojiNatureIcon /></IconButton>
+                    Whole30: {this.props.recipe.whole30 ? "Yes" : "No" }</p>
                     
-                
+                    <h3>Instructions:</h3>
+                    <p>{this.props.recipe.instructions}</p>
+                    
+                    <h3>Ingredients:</h3>
                     <ul>{ingredients}</ul>
                 </div>
+
+                <h3>Recommended reviews:</h3>
+                {renderReview}
+
+                <h5 style={{marginTop: "1%"}}><IconButton><EmojiEmotionsIcon /></IconButton>{this.props.review ? `${this.props.currentUser}: ${this.props.review}` : null}</h5>
+
                 <form onSubmit={(event) => this.handleSubmit(event, this.props.recipe, this.props.userId)}>
-                    <input type="text" name="review" value={this.state.review} onChange={this.handleInputChange}></input>
-                    <input type="submit" value="Add review"></input>
+                    <TextField type="text" name="review" value={this.state.review} onChange={this.handleInputChange} label="Your Review"
+                    InputProps={{
+                        startAdornment: (
+                        <InputAdornment position="start">
+                            <CreateIcon />
+                        </InputAdornment>
+                         ),
+                      }}/>
+                    <Button type="submit" size="small" style={{color: "#e91e63"}} variant="outlined">Add Review</Button>
                 </form>
                 
-                {this.props.review ? `${this.props.review} by ${this.props.currentUser}` : null}
+                
 
-                {renderReview}
+               
             </div>
         )
     }
