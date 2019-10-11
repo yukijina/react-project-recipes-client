@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { clickLike, displayReview } from '../actions/recipeActions.js';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import IconButton from '@material-ui/core/IconButton';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import Fab from '@material-ui/core/Fab';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
 
 class Recipe extends Component {
@@ -45,25 +56,36 @@ class Recipe extends Component {
 
     return(
             <div className="Recipe">
-                <div>
-                <h2>{this.props.recipe.title}</h2> 
+                <GridList cellHeight={400} cols={1} style={{marginBottom: "3%"}}>
+                <GridListTile>
                 <img src={this.props.recipe.image}></img>
-                </div>
-                <button onClick={() => this.handleClick(this.props.recipe, this.props.userId, this.state.review)}>&#10084; Like: {this.props.favorite}</button>
-                <p>Write Review:</p>
-                <p>Read in Minutes: {this.props.recipe.readyInMinutes}</p>
-                <p>Servings: {this.props.recipe.servings}</p>
-                <p>Vegetarian: {this.props.recipe.vegetarian ? "Yes" : "No" }</p>
-                <p>Vegan: {this.props.recipe.vegan ? "Yes" : "No" }</p>
-                <p>Gluten Free: {this.props.recipe.glutenfree ? "Yes" : "No" }</p>
-                <p>Dairy Free: {this.props.recipe.dairyfree ? "Yes" : "No"}</p>
-                <p>Ketogenic: {this.props.recipe.ketogenic ? "Yes" : "No" }</p>
-                <p>Whole30: {this.props.recipe.whole30 ? "Yes" : "No" }</p>
-                <p>Instructions:{this.props.recipe.instructions}</p>
-                
-            
-                <ul>{ingredients}</ul>
+                <GridListTileBar title={this.props.recipe.title} titlePosition="top"
+              actionIcon={
+                <IconButton>
+                  <StarBorderIcon style={{color: "#FCF3F3"}} />
+                </IconButton>
+              }
+              actionPosition="left">
+                  </GridListTileBar>
+                  </GridListTile> 
+                </GridList>  
 
+                <IconButton onClick={() => this.handleClick(this.props.recipe, this.props.userId, this.state.review)} style={{color: "#e91e63"}}><Fab style={{backgroundColor: "#f8bbd0", color: "#e91e63"}}><FavoriteBorderIcon /></Fab><span style={{fontSize: "1.2rem"}}>&nbsp;Love:&nbsp;{this.props.favorite}</span></IconButton>
+
+                <div>
+                    <p>Read in Minutes: {this.props.recipe.readyInMinutes}</p>
+                    <p>Servings: {this.props.recipe.servings}</p>
+                    <p>Vegetarian: {this.props.recipe.vegetarian ? "Yes" : "No" }</p>
+                    <p>Vegan: {this.props.recipe.vegan ? "Yes" : "No" }</p>
+                    <p>Gluten Free: {this.props.recipe.glutenfree ? "Yes" : "No" }</p>
+                    <p>Dairy Free: {this.props.recipe.dairyfree ? "Yes" : "No"}</p>
+                    <p>Ketogenic: {this.props.recipe.ketogenic ? "Yes" : "No" }</p>
+                    <p>Whole30: {this.props.recipe.whole30 ? "Yes" : "No" }</p>
+                    <p>Instructions:{this.props.recipe.instructions}</p>
+                    
+                
+                    <ul>{ingredients}</ul>
+                </div>
                 <form onSubmit={(event) => this.handleSubmit(event, this.props.recipe, this.props.userId)}>
                     <input type="text" name="review" value={this.state.review} onChange={this.handleInputChange}></input>
                     <input type="submit" value="Add review"></input>
@@ -72,7 +94,6 @@ class Recipe extends Component {
                 {this.props.review ? `${this.props.review} by ${this.props.currentUser}` : null}
 
                 {renderReview}
-               
             </div>
         )
     }
