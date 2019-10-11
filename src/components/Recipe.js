@@ -24,24 +24,24 @@ class Recipe extends Component {
     handleSubmit = (event, recipe, userId) => {
         event.preventDefault()
         console.log("review submit", recipe, userId, this.state.review)
-        // this.props.postingReviews(this.state.review, recipe, userId)
         this.props.clickLike(recipe, userId, this.state.review)
         this.props.displayReview(this.state.review)
     }
 
     render() {
-        const renderReview = this.props.reviews.map(review => <li key={review}>{review}</li>)
-
+        
         const ingredients = this.props.recipe.ingredients.map(ing => {
-          return (
-            <ul>
-            <li>{ing.name}</li>
-            <li>{ing.original}</li>
-            <li>{ing.amount} {ing.unit}</li>
-            </ul>
-            )
-          }
-          )
+            return (
+                <ul>
+                    <li>{ing.name}</li>
+                    <li>{ing.original}</li>
+                    <li>{ing.amount} {ing.unit}</li>
+                    </ul>
+                    )
+            }
+        )
+        
+        const renderReview = this.props.reviews.map(review => review !== "" ? <li key={review}>{review}</li>: null)
 
     return(
             <div className="Recipe">
@@ -83,7 +83,6 @@ const mapStateToProps = state => {
         recipe: state.recipeReducer.recipe,
         userId: state.currentUsersReducer.id,
         favorite: state.recipeReducer.favorite,
-       // reviewData: state.recipeReducer,
         reviews: state.recipeReducer.reviews,
         review: state.recipeReducer.review,
         currentUser: state.currentUsersReducer.username
