@@ -57,10 +57,12 @@ h1 {
 
 .MyAccount,
 .Logout,
-.Recipes {
+.Recipes,
+.Recipe {
   background-color: #FCF3F3;
   color: #555;
   height: 100vh;
+  padding: 10% 5%;
 }
 
 /* Home */
@@ -114,7 +116,8 @@ button {
 }
 
 .btn:link,
-.btn:visited {
+.btn:visited,
+input.btn {
     display: inline-block;
     padding: 10px 30px;
     font-weight: 300;
@@ -125,7 +128,9 @@ button {
 } 
 
 .btn-full:link,
-.btn-full:visited {
+.btn-full:visited,
+input.btn-full:link,
+input.btn-full:visited {
     background-color: #48c0df;
     border: 1px solid #48c0df;
     color: #FCF3F3;
@@ -139,12 +144,16 @@ button {
 }
 
 .btn:hover,
-.btn:active {
+.btn:active,
+input.btn:hover,
+input.btn:active {
     background-color: #48c0df;
 }
 
 .btn-full:hover,
-.btn-full:active {
+.btn-full:active
+input.btn-full:hover,
+input.btn-full:active {
     border: 1px solid #48c0df;
 }
 
