@@ -43,11 +43,11 @@ export const settingFavorite = (numberOfLikes) => {
 }
 
 export const settingReviews = (reviewArray) => {
-    return {
-        type: 'LOADING_REVIEWS',
-        payload: reviewArray
+        return {
+            type: 'LOADING_REVIEWS',
+            payload: reviewArray
+        }
     }
-}
 
 export const resetFavoriteAndReview = () => {
     return {
@@ -122,8 +122,13 @@ export const loadingFavorite = (apiId) => {
                 if (recipe.api_id === apiId) {      
                     const numberOfLikes = recipe.favorites.filter(fav => fav.like).length
 
-                    const reviewArray = recipe.favorites.map(fav => fav.review)
+                    let reviewArray = [];
 
+                    recipe.favorites.forEach(fav => {
+                        reviewArray.push({review: fav.review, username:fav.user_name})
+                    }) 
+                    
+                    console.log("reviewArray", reviewArray)
                     dispatch(settingFavorite(numberOfLikes))
                     dispatch(settingReviews(reviewArray))
                 } else {
@@ -134,27 +139,3 @@ export const loadingFavorite = (apiId) => {
     }
 }
 
-
-//Post reviews to Rails API
-// export const postingReviews = (review, recipe, userId) => {
-//     console.log("fire will post reviews", recipe, userId, review)
-//     const dataForRails = {
-//         title: recipe.title,
-//         image: recipe.image,
-//         api_id: recipe.recipeId,
-//         favorite: {review: review, user_id: userId}
-//     }
-//     return (dispatch) => {
-//         return fetch(`http://localhost:3001/api/v1/recipes` ,{
-//             credentials: "include",
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify(dataForRails)
-//         })
-//         .then(resp => resp.json())
-//         .then(favorites => { console.log(favorites)
-//          })
-//     }
-// }
