@@ -45,6 +45,9 @@ class Recipe extends Component {
         console.log("review submit", recipe, userId, this.state.review)
         this.props.clickLike(recipe, userId, this.state.review)
         this.props.displayReview(this.state.review)
+        this.setState({
+            review: ""
+        })
     }
 
     render() {
@@ -57,13 +60,7 @@ class Recipe extends Component {
                     )
             }
         )
-
-        let renderReview;
-        if (this.props.reviews.length === 0) {
-            renderReview = <p>Write a first review!</p>
-        } else {
-            renderReview = this.props.reviews.map(review => review !== "" ? <p key={review}><IconButton><MoodIcon /></IconButton>{review}</p> : null)
-        }
+    
 
     return(
             <div className="Recipe">
@@ -109,7 +106,7 @@ class Recipe extends Component {
                 </div>
 
                 <h3>Recommended reviews:</h3>
-                {renderReview}
+                {this.props.reviews.length === 0 ? <p>Write a first review!</p> : this.props.reviews.map(review => <p><IconButton><MoodIcon /></IconButton>{review.review} by {review.username}</p>)}
 
                 <h5 style={{marginTop: "1%"}}><IconButton><EmojiEmotionsIcon /></IconButton>{this.props.review ? `${this.props.currentUser}: ${this.props.review}` : null}</h5>
 
@@ -124,9 +121,6 @@ class Recipe extends Component {
                       }}/>
                     <Button type="submit" size="small" style={{color: "#e91e63"}} variant="outlined">Add Review</Button>
                 </form>
-                
-                
-
                
             </div>
         )
