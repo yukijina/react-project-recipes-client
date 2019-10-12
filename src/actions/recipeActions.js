@@ -49,6 +49,12 @@ export const settingReviews = (reviewArray) => {
     }
 }
 
+export const resetFavoriteAndReview = () => {
+    return {
+        type: 'RESET_FAVORITE_AND_REVIEWS',
+    }
+}
+
 // Display single review a user just typed
 export const displayReview = (review) => {
     console.log(review)
@@ -58,28 +64,18 @@ export const displayReview = (review) => {
     }
 }
 
-// export const updateReviewForm = (formData) => {
-//     console.log("updateReviewAction",formData)
-//     return {
-//         type: 'UPDATE_REVIEW_FORM',
-//         formData
-//     }
-// }
-
-
-
 // Recipe Show (loading individual Recipe)
-export const recipeShow = (recipeId, history) => {
+export const recipeShow = (apiId, history) => {
     const API_KEY = process.env.REACT_APP_APIKEY;
-    console.log("fire on show", recipeId)
+    console.log("fire on show", apiId)
     return (dispatch) => {
-        return fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${API_KEY}`)
+        return fetch(`https://api.spoonacular.com/recipes/${apiId}/information?apiKey=${API_KEY}`)
         .then(resp => resp.json())
         .then(recipe => {
-             //dispatch(loadingFavorite(recipeId))
-             dispatch(sendingRecipeDetails(recipe))
-             //dispatch(resetRecipes())
-             history.push(`/recipes/${recipe.id}`)
+            dispatch(sendingRecipeDetails(recipe))
+           // dispatch(loadingFavorite(apiId))
+            history.push(`/recipes/${recipe.id}`)
+            //dispatch(resetRecipes())
          })
     }
 }
@@ -122,10 +118,8 @@ export const loadingFavorite = (apiId) => {
         })
         .then(resp => resp.json())
         .then(recipes => { console.log(recipes)
-            //debugger
-            recipes.map(recipe => {
-                
-                if (recipe.api_id === apiId) {
+            recipes.map(recipe => {   
+                if (recipe.api_id === apiId) {      
                     const numberOfLikes = recipe.favorites.filter(fav => fav.like).length
 
                     const reviewArray = recipe.favorites.map(fav => fav.review)
@@ -133,16 +127,12 @@ export const loadingFavorite = (apiId) => {
                     dispatch(settingFavorite(numberOfLikes))
                     dispatch(settingReviews(reviewArray))
                 } else {
-                    
+                    console.log("there is no matching")
                 }
             })
          })
     }
 }
-
-
-
-
 
 
 //Post reviews to Rails API
