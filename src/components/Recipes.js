@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { searchRecipes } from '../actions/recipesActions.js';
-import { recipeShow, loadingFavorite } from '../actions/recipeActions.js';
+import { recipeShow, loadingFavorite, resetFavoriteAndReview } from '../actions/recipeActions.js';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
@@ -17,6 +17,10 @@ class Recipes extends Component {
     state = {
         query: "",
         diet: ""
+    }
+
+    componentDidMount(){
+        this.props.resetFavoriteAndReview()
     }
 
     handleInputChange = event => {
@@ -82,4 +86,4 @@ class Recipes extends Component {
 }
 
 
-export default connect(null, { searchRecipes, recipeShow, loadingFavorite  })(Recipes);
+export default connect(null, { searchRecipes, recipeShow, loadingFavorite, resetFavoriteAndReview })(Recipes);
