@@ -22,11 +22,12 @@ export default (state = {
         case 'LOADING_REVIEWS':
             return {...state, reviews: action.payload} 
 
+        case 'RESET_FAVORITE_AND_REVIEWS':
+                return {favorite: 0, reviews: []}
+
         case 'DISPLAY_REVIEW':
             return {...state, review: action.payload}
 
-        // case 'UPDATE_REVIEW_FORM':
-        //     return {...state, reviews:[action.formData.review]}
         default:
             return state
     }
