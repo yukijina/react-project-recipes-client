@@ -5,7 +5,6 @@ export default (state = {
     review: ""
 }, action) => {
     console.log("RecipeReducer:", action.type, action.payload)
-    //debugger
     switch(action.type) {
         case 'UPLOADING_RECIPE':
             return {...state, recipe: action.payload}
