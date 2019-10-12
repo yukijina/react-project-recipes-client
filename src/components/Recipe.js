@@ -20,6 +20,7 @@ import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Button from '@material-ui/core/Button';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
 
 class Recipe extends Component {
@@ -121,7 +122,9 @@ class Recipe extends Component {
                       }}/>
                     <Button type="submit" size="small" style={{color: "#e91e63"}} variant="outlined">Add Review</Button>
                 </form>
-               
+
+            <button onClick={this.props.history.goBack}style={{margin: "3% 0"}}><KeyboardBackspaceIcon /><span style={{fontSize: "1rem"}}>Back</span></button>  
+
             </div>
         )
     }
