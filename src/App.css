@@ -226,6 +226,25 @@ height: 100vh;
   color: #e91e63;
 }
 
+/*----USER (MY ACCOUNT)-----*/
+.MyAccount h1 {
+  color: #555;
+}
+
+.MyAccount h2 {
+  margin-bottom: 2%;
+}
+
+.MyAccount a:link,
+.MyAccount a:visited {
+  color: #555;
+}
+
+.MyAccount a:hover,
+.MyAccount a:active {
+  color:#48c0df;
+}
+
 /* Logout */
 .logoutInput {
     border: none;
