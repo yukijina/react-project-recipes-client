@@ -57,8 +57,13 @@ class Recipe extends Component {
                     )
             }
         )
-        
-        const renderReview = this.props.reviews.map(review => review !== "" ? <p key={review}><IconButton><MoodIcon /></IconButton>{review}</p>: null)
+
+        let renderReview;
+        if (this.props.reviews.length === 0) {
+            renderReview = <p>Write a first review!</p>
+        } else {
+            renderReview = this.props.reviews.map(review => review !== "" ? <p key={review}><IconButton><MoodIcon /></IconButton>{review}</p> : null)
+        }
 
     return(
             <div className="Recipe">
