@@ -82,6 +82,7 @@ h1 {
   float: right;
   list-style:none;
   margin-top: 55px;
+  margin-right: 25px;
 }
 
 .main-nav li {
@@ -260,5 +261,5 @@ height: 100vh;
 
 .logoutInput[type=submit]:hover,
 .logoutInput[type=submit]:active {
-    border-style: dotted;
+  text-decoration: underline;
 } 
