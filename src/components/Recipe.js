@@ -33,6 +33,7 @@ class Recipe extends Component {
         this.props.loadingFavorite(this.props.recipe.recipeId)
     }
 
+    //Like button
     handleClick = (recipe, userId) => {
         console.log("like btn:", recipe, userId)
         this.props.clickLike(recipe, userId, this.state.review)
@@ -47,8 +48,8 @@ class Recipe extends Component {
 
     handleSubmit = (event, recipe, userId) => {
         event.preventDefault()
-        console.log("review submit", recipe, userId, this.state.review)
-        this.props.clickLike(recipe, userId, this.state.review)
+        console.log("review submit", recipe, userId, this.state.review, this.props.history)
+        this.props.clickLike(recipe, userId, this.state.review, this.props.history)
         this.props.displayReview(this.state.review)
         this.setState({
             review: ""
