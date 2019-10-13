@@ -261,5 +261,7 @@ height: 100vh;
 
 .logoutInput[type=submit]:hover,
 .logoutInput[type=submit]:active {
+  border:  none;
+  outline: none;
   text-decoration: underline;
 } 
