@@ -56,7 +56,7 @@ export const login = (userData, history) => {
         .then(resp => resp.json())
         .then(user => {
             if (user.error) {
-                //alert(user.error)
+                alert(user.error)
             } else {
                 dispatch(setCurrentUser(user))
                 dispatch(resetLoginForm())
@@ -78,16 +78,17 @@ export const getCurrentUser = () => {
         })
         .then(resp => resp.json())
         .then(user => {
-            if (user.error) {
+            //if (user.error) {
                 //alert(user.error)
-            } else {
+            //} else {
                 dispatch(setCurrentUser(user))
-            }
+            //}
         })
     }
 }
 
-export const logout = event => {
+export const logout = (event) => {
+    console.log("passing")
     return dispatch => {
         dispatch(clearCurrentUser)
         return fetch("http://localhost:3001/api/v1/logout", {
