@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { clickLike, displayReview } from '../actions/recipeActions.js';
+import { clickLike, displayReview, loadingFavorite } from '../actions/recipeActions.js';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -27,6 +27,10 @@ class Recipe extends Component {
 
     state = {
         review: ""
+    }
+
+    componentDidMount() {
+        this.props.loadingFavorite(this.props.recipe.recipeId)
     }
 
     handleClick = (recipe, userId) => {
@@ -141,4 +145,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { clickLike, displayReview })(Recipe);
+export default connect(mapStateToProps, { clickLike, displayReview, loadingFavorite })(Recipe);
