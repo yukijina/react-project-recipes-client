@@ -31,7 +31,7 @@ export const signup = (userData, history) => {
         .then(user =>  
            { 
             if (user.error) {
-                //alert(user.error)
+                alert(user.error)
             } else {
                 dispatch(setCurrentUser(user))
                 dispatch(resetSignupForm())
