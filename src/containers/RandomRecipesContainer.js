@@ -12,8 +12,7 @@ class RandomRecipesContainer extends Component {
     render() {
         return (
             <div>
-                <Recipes recipes={this.props.recipes} hisotry={this.props.history} />
-                
+                <Recipes recipes={this.props.recipes} hisotry={this.props.history} />          
             </div>
         )
     }
