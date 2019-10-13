@@ -1,6 +1,5 @@
 import { resetRecipes } from './recipesActions.js'
 
-
 export const sendingRecipeDetails = recipe => {
     const recipeData = {
         title: recipe.title, 
@@ -99,10 +98,11 @@ export const clickLike = (recipe, userId, review) => {
         })
         .then(resp => resp.json())
         .then(recipe => {
-             dispatch(incrementFavorite())      
+             dispatch(incrementFavorite()) 
          })
     }
 }
+
 
 //Loading total number of Likes if a recipe has favorites
 export const loadingFavorite = (apiId) => {
