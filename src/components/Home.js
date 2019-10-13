@@ -7,7 +7,7 @@ const renderBtn = props.loggedin ? <div><button><Link to="/logout" className="bt
 
     return (
         <div className="Home">
-            <h1>My React App</h1>
+            <h1>I COOK</h1>
             <h3>Organize your recipe from 360k Recipes</h3>
                 {renderBtn}
          </div>
