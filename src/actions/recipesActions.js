@@ -39,7 +39,7 @@ export const fetchRecipes = () => {
     const API_KEY = process.env.REACT_APP_APIKEY;
     return (dispatch) => {
         dispatch(loadingRecipes())
-        return fetch(`https://api.spoonacular.com/recipes/random?number=3&apiKey=${API_KEY}`)
+        return fetch(`https://api.spoonacular.com/recipes/random?number=6&apiKey=${API_KEY}`)
         .then(resp => resp.json())
         .then(recipeColletctions => dispatch(sendingRecipes(recipeColletctions.recipes)))
     }
