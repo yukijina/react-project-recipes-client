@@ -10,7 +10,7 @@ import RandomRecipesContainer from './containers/RandomRecipesContainer.js';
 import { getCurrentUser } from './actions/currentUsers.js'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Recipe from './components/Recipe.js';
-import User from './containers/User.js';
+import UserContainer from './containers/UserContainer.js';
 import ProtectedRoute from './containers/ProtectedRoute.js'
 
 
@@ -30,7 +30,7 @@ class App extends Component {
               <ProtectedRoute exact path='/logout' component={Logout}/>
               <ProtectedRoute exact path='/recipes' component={RandomRecipesContainer}/>
               <ProtectedRoute exact path='/recipes/:id' component={Recipe} />
-              <ProtectedRoute exact path='/myaccount' component={User} />
+              <ProtectedRoute exact path='/myaccount' component={UserContainer} />
    
               <Route exact path='/' render={() => <Home loggedin={this.props.loggedin} />}/>
               <Route exact path='/login' component={Login} />
