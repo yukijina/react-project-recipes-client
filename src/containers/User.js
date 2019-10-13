@@ -20,21 +20,19 @@ class User extends Component {
         const recipes = this.props.favoriteRecipes
         
         let favoriteText;
-            if(recipes){
-                console.log(recipes)
-            favoriteText = (
-                recipes.map(recipe => <ListItem alignItems="flex-start"><ListItemAvatar><Avatar src={recipe.image} /></ListItemAvatar><ListItemText primary={`${recipe.title.substring(0,25)}...`} /><a href="#" onClick={this.handleClick} data-apiId={recipe.api_id}>More</a><Divider variant="inset" component="li" /></ListItem>)
-            )
+            if(recipes.length !== 0){
+                favoriteText = (
+                    recipes.map(recipe => <ListItem alignItems="flex-start"><ListItemAvatar><Avatar src={recipe.image} /></ListItemAvatar><ListItemText primary={`${recipe.title.substring(0,25)}...`} /><a href="#" onClick={this.handleClick} data-apiid={recipe.api_id}>More</a><Divider variant="inset" component="li" /></ListItem>)
+                 )
             } else {
-             favoriteText = ("You don't have any favorite recipes yet.")
+                favoriteText = (<p>You don't have any favorite recipes yet.</p>)
            }
         
 
         return (
             <div className="MyAccount">
                  {user ? <div><h1>Hello, {user.username}</h1><h2>Your Favorite Recipes:</h2></div> : null}
-                <List>{favoriteText}</List>
-                
+                <List>{favoriteText}</List>               
             </div>
         )
     }
