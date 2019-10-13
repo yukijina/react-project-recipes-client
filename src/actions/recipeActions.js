@@ -73,7 +73,6 @@ export const recipeShow = (apiId, history) => {
         .then(resp => resp.json())
         .then(recipe => {
             dispatch(sendingRecipeDetails(recipe))
-           // dispatch(loadingFavorite(apiId))
             history.push(`/recipes/${recipe.id}`)
             //dispatch(resetRecipes())
          })
