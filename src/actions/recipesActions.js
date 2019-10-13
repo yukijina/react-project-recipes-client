@@ -1,5 +1,3 @@
-import { resetRecipe } from "./recipeActions.js"
-
 export const loadingRecipes = () => {
     return {
         type: 'LOADING_RECIPES'
@@ -13,15 +11,21 @@ export const resetRecipes = () => {
 }
 
 export const sendingRecipes = recipes => {
-    const recipeData = recipes.map(recipe => {
-        return {
-            title: recipe.title, 
-            recipeId: recipe.id,
-            image: recipe.image.includes("http") ? recipe.image : `https://spoonacular.com/recipeImages/${recipe.image}`,
-            instructions: recipe.instructions,
-            ingredients: recipe.extendedIngredients
-        }
-    })
+    let recipeData;
+
+    if (recipes.length === 0) {
+        recipeData = null
+    } else {
+        recipeData = recipes.map(recipe => {
+            return {
+                title: recipe.title, 
+                recipeId: recipe.id,
+                image: recipe.image.includes("http") ? recipe.image : `https://spoonacular.com/recipeImages/${recipe.image}`,
+                instructions: recipe.instructions,
+                ingredients: recipe.extendedIngredients
+            }
+        })
+    }
     return {
         type: 'FETCH_RECIPES',
         payload: recipeData
@@ -46,7 +50,6 @@ export const searchRecipes = (state) => {
     const API_KEY = process.env.REACT_APP_APIKEY;
     return (dispatch) => {
         dispatch(loadingRecipes())
-        //dispatch(resetRecipe())
         return fetch(`https://api.spoonacular.com/recipes/search?query=${state.query}&diet=${state.diet}&apiKey=${API_KEY}`)
         .then(resp => resp.json())
         .then(recipes => dispatch(sendingRecipes(recipes.results)))
