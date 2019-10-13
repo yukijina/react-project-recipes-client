@@ -20,11 +20,11 @@ class User extends Component {
         
         let favoriteText;
             if(recipes.length !== 0){
-                favoriteText = (
+                favoriteText = 
                     recipes.map(recipe => <ListItem alignItems="flex-start"><ListItemAvatar><Avatar src={recipe.image} /></ListItemAvatar><ListItemText primary={`${recipe.title.substring(0,25)}...`} /><a href="#" onClick={this.handleClick} data-apiid={recipe.api_id}>More</a><Divider variant="inset" component="li" /></ListItem>)
-                 )
+                 
             } else {
-                favoriteText = (<p>You don't have any favorite recipes yet.</p>)
+                favoriteText = <p>You don't have any favorite recipes yet.</p>
            }
         
 
