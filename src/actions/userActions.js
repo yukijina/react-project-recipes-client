@@ -1,4 +1,4 @@
-export const uploadingRecipe = recipes => {
+export const uploadingFavorite = recipes => {
     return {
         type: 'UPLOADING_FAVORITE',
         payload: recipes
@@ -17,7 +17,7 @@ export const loadingUserInfo = (currentUserId) => {
         })
         .then(resp => resp.json())
         .then(userData => {console.log("userData", userData)
-        dispatch(uploadingRecipe(userData.recipes))
+        dispatch(uploadingFavorite(userData.recipes))
         //  userData.recipes.map(recipe => {   
         //     if (recipe.length !== 0) {         
         //         console.log("reivew in User action", recipe)
