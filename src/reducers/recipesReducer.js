@@ -2,7 +2,7 @@ export default (state = {
     loading: false,
     recipes: null
 }, action) => {
-    console.log("RecipeReducer:", action.type, action.payload)
+    //console.log("RecipeReducer:", action.type, action.payload)
     switch(action.type) {
         case 'LOADING_RECIPES': 
             return {...state, loading: true}

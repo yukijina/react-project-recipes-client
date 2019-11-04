@@ -9,6 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 
 class User extends Component {
 
+    //Recipe Show - display individual Recipe
     handleClick = (event) => {
         this.props.recipeShow(event.target.dataset.apiid, this.props.history)
     }

@@ -8,8 +8,8 @@ import CloseIcon from '@material-ui/icons/Close';
 
 const Login = ({loginData, updateLoginForm, login, history}) => {
 
-    const handleChange = event => {
-        updateLoginForm({...loginData, [event.target.name]: event.target.value})
+    function handleChange(event) {
+        return updateLoginForm({...loginData, [event.target.name]: event.target.value})
     }
 
     const handleSubmit = event => {

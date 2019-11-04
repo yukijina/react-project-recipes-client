@@ -6,7 +6,7 @@ const ProtectedRoute = ({ loggedin, component: Component, ...props}) => {
     return (
         <Route {...props}
         render={property => {
-            console.log(loggedin)
+            //console.log(loggedin)
             if (loggedin) {
                 return <Component {...property} />
             } else {

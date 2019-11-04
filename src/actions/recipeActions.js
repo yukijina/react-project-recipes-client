@@ -54,19 +54,18 @@ export const resetFavoriteAndReview = () => {
     }
 }
 
-// Display single review a user just typed
+// Display single review that a user just typed
 export const displayReview = (review) => {
-    console.log(review)
     return {
         type: 'DISPLAY_REVIEW',
         payload: review
     }
 }
 
-// Recipe Show (loading individual Recipe)
+// Recipe Show (fetching and loading individual Recipe)
 export const recipeShow = (apiId, history) => {
     const API_KEY = process.env.REACT_APP_APIKEY;
-    console.log("fire on show", apiId)
+    //console.log("fire on show", apiId)
     return (dispatch) => {
         return fetch(`https://api.spoonacular.com/recipes/${apiId}/information?apiKey=${API_KEY}`)
         .then(resp => resp.json())
@@ -80,7 +79,7 @@ export const recipeShow = (apiId, history) => {
 
 //Click "like" button - post likes and review
 export const clickLike = (recipe, userId, review) => {
-    console.log("fire clickLike", recipe, userId, review)
+    //console.log("fire clickLike", recipe, userId, review)
     return (dispatch) => {
         const dataForRails = {
             title: recipe.title,
@@ -106,7 +105,7 @@ export const clickLike = (recipe, userId, review) => {
 
 //Loading total number of Likes if a recipe has favorites
 export const loadingFavorite = (apiId) => {
-    console.log("fire loading Favorite", apiId)
+    //console.log("fire loading Favorite", apiId)
     return (dispatch) => {
         return fetch(`http://localhost:3001/api/v1/recipes` ,{
             credentials: "include",
@@ -116,7 +115,7 @@ export const loadingFavorite = (apiId) => {
             },
         })
         .then(resp => resp.json())
-        .then(recipes => { console.log(recipes)
+        .then(recipes => { //console.log(recipes)
             recipes.map(recipe => {   
                 if (recipe.api_id === apiId) {      
                     const numberOfLikes = recipe.favorites.filter(fav => fav.like).length
@@ -127,7 +126,7 @@ export const loadingFavorite = (apiId) => {
                         reviewArray.push({review: fav.review, username:fav.user_name})
                     }) 
                     
-                    console.log("reviewArray", reviewArray)
+                    //console.log("reviewArray", reviewArray)
                     dispatch(settingFavorite(numberOfLikes))
                     dispatch(settingReviews(reviewArray))
                 } else {

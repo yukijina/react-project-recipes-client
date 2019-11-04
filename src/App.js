@@ -20,7 +20,6 @@ class App extends Component {
   }
 
   render() {
-   
     return (
       <Router>
         {this.props.loggedin ? <NavBar loggedin= {this.props.loggedin} /> : <Home />}
@@ -45,8 +44,6 @@ class App extends Component {
 const mapStateToProps = state => {
   const status = state.currentUsersReducer === null || state.currentUsersReducer.error ? false : true
   return {
-    recipes: state.recipesReducer.recipes,
-    currentUser: state.currentUsersReducer,
     loggedin: status
   }
 }

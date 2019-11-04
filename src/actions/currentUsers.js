@@ -15,9 +15,10 @@ export const clearCurrentUser = () => {
 }
 
 
-//asynchronous
+// asynchronous 
+// create a new user
 export const signup = (userData, history) => {
-    console.log("action", userData)
+    //console.log("action", userData)
     return dispatch => {
         return fetch("http://localhost:3001/api/v1/signup", {
             credentials: "include",
@@ -66,7 +67,6 @@ export const login = (userData, history) => {
     }
 }
 
-//asynchronous
 export const getCurrentUser = () => {
     return dispatch => {
         return fetch("http://localhost:3001/api/v1/get_current_user", {
@@ -88,7 +88,6 @@ export const getCurrentUser = () => {
 }
 
 export const logout = (event) => {
-    console.log("passing")
     return dispatch => {
         dispatch(clearCurrentUser)
         return fetch("http://localhost:3001/api/v1/logout", {

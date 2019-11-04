@@ -29,13 +29,14 @@ class Recipe extends Component {
         review: ""
     }
 
+    //Loding total number of "Like"
     componentDidMount() {
         this.props.loadingFavorite(this.props.recipe.recipeId)
     }
 
     //Like button
     handleClick = (recipe, userId) => {
-        console.log("like btn:", recipe, userId)
+        //console.log("like btn:", recipe, userId)
         this.props.clickLike(recipe, userId, this.state.review)
     }
 
@@ -48,7 +49,7 @@ class Recipe extends Component {
 
     handleSubmit = (event, recipe, userId) => {
         event.preventDefault()
-        console.log("review submit", recipe, userId, this.state.review, this.props.history)
+        //console.log("review submit", recipe, userId, this.state.review, this.props.history)
         this.props.clickLike(recipe, userId, this.state.review, this.props.history)
         this.props.displayReview(this.state.review)
         this.setState({
@@ -86,6 +87,7 @@ class Recipe extends Component {
 
                 <IconButton onClick={() => this.handleClick(this.props.recipe, this.props.userId, this.state.review)} style={{color: "#e91e63"}}><Fab style={{backgroundColor: "#f8bbd0", color: "#e91e63"}}><FavoriteBorderIcon /></Fab><span style={{fontSize: "1.2rem"}}>&nbsp;Love:&nbsp;{this.props.favorite}</span></IconButton>
 
+                {/* Recipe details */}
                 <div>
                     <p><IconButton><ScheduleIcon /></IconButton>
                     Read in Minutes: {this.props.recipe.readyInMinutes}</p>

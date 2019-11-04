@@ -5,7 +5,7 @@ export const uploadingFavorite = recipes => {
     }
 }
 
-
+// My account page
 export const loadingUserInfo = (currentUserId) => {
     return (dispatch) => {
         return fetch(`http://localhost:3001/api/v1/users/${currentUserId}` ,{
@@ -16,16 +16,8 @@ export const loadingUserInfo = (currentUserId) => {
             },
         })
         .then(resp => resp.json())
-        .then(userData => {console.log("userData", userData)
+        .then(userData => {//console.log("userData", userData)
         dispatch(uploadingFavorite(userData.recipes))
-        //  userData.recipes.map(recipe => {   
-        //     if (recipe.length !== 0) {         
-        //         console.log("reivew in User action", recipe)
-        //         dispatch(uploadingRecipe(recipe))
-        //     } else {
-                
-        //     }
-        // })
         })
 
     }

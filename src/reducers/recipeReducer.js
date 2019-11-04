@@ -4,7 +4,7 @@ export default (state = {
     reviews: [],
     review: ""
 }, action) => {
-    console.log("RecipeReducer:", action.type, action.payload)
+    //console.log("RecipeReducer:", action.type, action.payload)
     switch(action.type) {
         case 'UPLOADING_RECIPE':
             return {...state, recipe: action.payload}

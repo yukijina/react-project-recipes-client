@@ -19,10 +19,12 @@ class Recipes extends Component {
         diet: ""
     }
 
+    // Display randumn recipes
     componentDidMount(){
         this.props.resetFavoriteAndReview()
     }
 
+    // Search recipe by keyword that a user inputs
     handleInputChange = event => {
         // searchQuery({...this.props.query, [event.target.name]: event.target.value})
         this.setState({
@@ -30,30 +32,31 @@ class Recipes extends Component {
         })
     }
 
+    // Choose recipe category by select options
     handleSelectChange = event => {
         this.setState({
             ...this.state, diet: event.target.value
         })
     }
 
+    // Submit and search recipes from external API
     handleSubmit = event => {
         event.preventDefault()
         this.props.searchRecipes(this.state)
     }
 
-    // Render individual recipe in Recipe Show
+    // Move to Recipe Show page. 
     handleClick = (apiId, history) => {
-        console.log("now in click", apiId, history)
         this.props.recipeShow(apiId, history)
     }
 
     render() {
         
-        //console.log(this.props.recipes)
         return(
             <div className="Recipes">
                 <h1 style={{color: "#555"}}>Today's choice</h1>
                 
+                {/* Search recipes */}
                 <form onSubmit={this.handleSubmit} style={{margin: "6% auto"}}>
                     Search : 
                     <TextField type="text" name="query" value={this.state.query} placeholder="e.g.burger" onChange={this.handleInputChange} style={{marginLeft: "10px", marginRight: "10px"}} />
