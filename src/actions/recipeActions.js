@@ -1,4 +1,4 @@
-import { resetRecipes } from './recipesActions.js'
+//import { resetRecipes } from './recipesActions.js'
 
 export const sendingRecipeDetails = recipe => {
     const recipeData = {
@@ -28,11 +28,11 @@ export const incrementFavorite = () => {
     }
 }
 
-export const resetRecipe = () => {
-    return {
-        type: 'RESET_RECIPE',
-    }
-}
+// export const resetRecipe = () => {
+//     return {
+//         type: 'RESET_RECIPE',
+//     }
+// }
 
 export const settingFavorite = (numberOfLikes) => {
     return {
