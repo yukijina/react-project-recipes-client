@@ -47,6 +47,7 @@ export const signup = (userData, history) => {
 
 export const login = (userData, history) => {
     const heroku = process.env.HEROKU
+    console.log(heroku)
     return dispatch => {
         return fetch(`${heroku}/api/v1/login`, {
             credentials: 'include',
