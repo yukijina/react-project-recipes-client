@@ -80,6 +80,7 @@ export const recipeShow = (apiId, history) => {
 //Click "like" button - post likes and review
 export const clickLike = (recipe, userId, review) => {
     //console.log("fire clickLike", recipe, userId, review)
+    const netlifyBase = process.env.REACT_APP_NETLIFY;
     return (dispatch) => {
         const dataForRails = {
             title: recipe.title,
@@ -87,7 +88,7 @@ export const clickLike = (recipe, userId, review) => {
             api_id: recipe.recipeId,
             favorite: {like: true, review: review,user_id: userId}
         }
-        return fetch(`http://localhost:3001/api/v1/recipes` ,{
+        return fetch(`${netlifyBase}/api/v1/recipes` ,{
             credentials: "include",
             method: "POST",
             headers: {
@@ -106,8 +107,9 @@ export const clickLike = (recipe, userId, review) => {
 //Loading total number of Likes if a recipe has favorites
 export const loadingFavorite = (apiId) => {
     //console.log("fire loading Favorite", apiId)
+    const netlifyBase = process.env.REACT_APP_NETLIFY;
     return (dispatch) => {
-        return fetch(`http://localhost:3001/api/v1/recipes` ,{
+        return fetch(`${netlifyBase}/api/v1/recipes` ,{
             credentials: "include",
             method: "GET",
             headers: {

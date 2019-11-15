@@ -17,10 +17,12 @@ export const clearCurrentUser = () => {
 
 // asynchronous 
 // create a new user
+const netlifyBase = process.env.REACT_APP_NETLIFY;
 export const signup = (userData, history) => {
     //console.log("action", userData)
+    console.log(netlifyBase)
     return dispatch => {
-        return fetch("http://localhost:3001/api/v1/signup", {
+        return fetch(`${netlifyBase}/api/v1/signup`, {
             credentials: "include",
             method: "POST",
             headers: {
@@ -46,7 +48,7 @@ export const signup = (userData, history) => {
 
 export const login = (userData, history) => {
     return dispatch => {
-        return fetch("http://localhost:3001/api/v1/login", {
+        return fetch(`${netlifyBase}/api/v1/login`, {
             credentials: 'include',
             method: "POST",
             headers: {
@@ -69,7 +71,7 @@ export const login = (userData, history) => {
 
 export const getCurrentUser = () => {
     return dispatch => {
-        return fetch("http://localhost:3001/api/v1/get_current_user", {
+        return fetch(`${netlifyBase}/api/v1/get_current_user`, {
             credentials: "include",
             method: "GET",
             headers: {
@@ -90,7 +92,7 @@ export const getCurrentUser = () => {
 export const logout = (event) => {
     return dispatch => {
         dispatch(clearCurrentUser)
-        return fetch("http://localhost:3001/api/v1/logout", {
+        return fetch(`${netlifyBase}/api/v1/logout`, {
             credentials: "include",
             method: "DELETE"
          })
