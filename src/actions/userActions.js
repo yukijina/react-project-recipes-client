@@ -7,8 +7,9 @@ export const uploadingFavorite = recipes => {
 
 // My account page
 export const loadingUserInfo = (currentUserId) => {
+    const heroku = process.env.HEROKU
     return (dispatch) => {
-        return fetch(`/api/v1/users/${currentUserId}` ,{
+        return fetch(`${heroku}/api/v1/users/${currentUserId}` ,{
             credentials: "include",
             method: "GET",
             headers: {
