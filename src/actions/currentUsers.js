@@ -17,7 +17,7 @@ export const clearCurrentUser = () => {
 
 // asynchronous 
 // create a new user
-const netlifyBase = process.env.REACT_APP_NETLIFY;
+const netlifyBase = process.env.NETLIFY;
 export const signup = (userData, history) => {
     //console.log("action", userData)
     console.log(netlifyBase)
