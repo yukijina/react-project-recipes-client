@@ -7,9 +7,8 @@ export const uploadingFavorite = recipes => {
 
 // My account page
 export const loadingUserInfo = (currentUserId) => {
-    const netlifyBase = process.env.NETLIFY;
     return (dispatch) => {
-        return fetch(`${netlifyBase}/api/v1/users/${currentUserId}` ,{
+        return fetch(`https://react-rails-project-recipes.netlify.com/api/v1/users/${currentUserId}` ,{
             credentials: "include",
             method: "GET",
             headers: {
