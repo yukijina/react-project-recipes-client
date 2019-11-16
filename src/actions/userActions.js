@@ -10,7 +10,7 @@ export const loadingUserInfo = (currentUserId) => {
     const heroku = process.env.REACT_APP_HEROKU
     const railsURL = process.env.RAILS_API_URL
     return (dispatch) => {
-        return fetch(`${heroku}/api/v1/users/${currentUserId}` ,{
+        return fetch(`https://react-rails-project-recipes.herokuapp.com/api/v1/users/${currentUserId}` ,{
             credentials: "include",
             method: "GET",
             headers: {

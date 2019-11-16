@@ -22,7 +22,7 @@ export const signup = (userData, history) => {
     const heroku = process.env.REACT_APP_HEROKU
     const railsURL = process.env.RAILS_API_URL
     return dispatch => {
-        return fetch(`${heroku}/api/v1/signup`, {
+        return fetch(`https://react-rails-project-recipes.herokuapp.com/api/v1/signup`, {
             credentials: "include",
             method: "POST",
             headers: {
@@ -51,7 +51,7 @@ export const login = (userData, history) => {
     const railsURL = process.env.RAILS_API_URL
     console.log(heroku)
     return dispatch => {
-        return fetch(`${heroku}/api/v1/login`, {
+        return fetch(`https://react-rails-project-recipes.herokuapp.com/api/v1/login`, {
             credentials: 'include',
             method: "POST",
             headers: {
@@ -77,7 +77,7 @@ export const getCurrentUser = () => {
     const railsURL = process.env.RAILS_API_URL
     console.log(heroku)
     return dispatch => {
-        return fetch(`${heroku}/api/v1/get_current_user`, {
+        return fetch(`https://react-rails-project-recipes.herokuapp.com/api/v1/get_current_user`, {
             credentials: "include",
             method: "GET",
             headers: {
@@ -100,7 +100,7 @@ export const logout = (event) => {
     const railsURL = process.env.RAILS_API_URL
     return dispatch => {
         dispatch(clearCurrentUser)
-        return fetch(`${heroku}/api/v1/logout`, {
+        return fetch(`https://react-rails-project-recipes.herokuapp.com/api/v1/logout`, {
             credentials: "include",
             method: "DELETE"
          })
