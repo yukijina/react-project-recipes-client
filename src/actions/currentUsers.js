@@ -19,10 +19,10 @@ export const clearCurrentUser = () => {
 // create a new user
 export const signup = (userData, history) => {
     //console.log("action", userData)
-    const heroku = process.env.HEROKU
+    const heroku = process.env.REACT_APP_HEROKU
     const railsURL = process.env.RAILS_API_URL
     return dispatch => {
-        return fetch(`${railsURL}/api/v1/signup`, {
+        return fetch(`${heroku}/api/v1/signup`, {
             credentials: "include",
             method: "POST",
             headers: {
@@ -47,11 +47,11 @@ export const signup = (userData, history) => {
 
 
 export const login = (userData, history) => {
-    const heroku = process.env.HEROKU
+    const heroku = process.env.REACT_APP_HEROKU
     const railsURL = process.env.RAILS_API_URL
     console.log(heroku)
     return dispatch => {
-        return fetch(`${railsURL}/api/v1/login`, {
+        return fetch(`${heroku}/api/v1/login`, {
             credentials: 'include',
             method: "POST",
             headers: {
@@ -73,11 +73,11 @@ export const login = (userData, history) => {
 }
 
 export const getCurrentUser = () => {
-    const heroku = process.env.HEROKU
+    const heroku = process.env.REACT_APP_HEROKU
     const railsURL = process.env.RAILS_API_URL
     console.log(heroku)
     return dispatch => {
-        return fetch(`${railsURL}/api/v1/get_current_user`, {
+        return fetch(`${heroku}/api/v1/get_current_user`, {
             credentials: "include",
             method: "GET",
             headers: {
@@ -96,11 +96,11 @@ export const getCurrentUser = () => {
 }
 
 export const logout = (event) => {
-    const heroku = process.env.HEROKU
+    const heroku = process.env.REACT_APP_HEROKU
     const railsURL = process.env.RAILS_API_URL
     return dispatch => {
         dispatch(clearCurrentUser)
-        return fetch(`${railsURL}/api/v1/logout`, {
+        return fetch(`${heroku}/api/v1/logout`, {
             credentials: "include",
             method: "DELETE"
          })

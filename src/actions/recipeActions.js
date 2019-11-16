@@ -80,7 +80,7 @@ export const recipeShow = (apiId, history) => {
 //Click "like" button - post likes and review
 export const clickLike = (recipe, userId, review) => {
     //console.log("fire clickLike", recipe, userId, review)
-    const heroku = process.env.HEROKU
+    const heroku = process.env.REACT_APP_HEROKU
     return (dispatch) => {
         const dataForRails = {
             title: recipe.title,
@@ -107,10 +107,10 @@ export const clickLike = (recipe, userId, review) => {
 //Loading total number of Likes if a recipe has favorites
 export const loadingFavorite = (apiId) => {
     //console.log("fire loading Favorite", apiId)
-    const heroku = process.env.HEROKU
+    const heroku = process.env.REACT_APP_HEROKU
     const railsURL = process.env.RAILS_API_URL
     return (dispatch) => {
-        return fetch(`${railsURL}/api/v1/recipes` ,{
+        return fetch(`${heroku}/api/v1/recipes` ,{
             credentials: "include",
             method: "GET",
             headers: {
