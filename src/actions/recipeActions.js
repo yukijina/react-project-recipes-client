@@ -108,8 +108,9 @@ export const clickLike = (recipe, userId, review) => {
 export const loadingFavorite = (apiId) => {
     //console.log("fire loading Favorite", apiId)
     const heroku = process.env.HEROKU
+    const railsURL = process.env.RAILS_API_URL
     return (dispatch) => {
-        return fetch(`${heroku}/api/v1/recipes` ,{
+        return fetch(`${railsURL}/api/v1/recipes` ,{
             credentials: "include",
             method: "GET",
             headers: {
