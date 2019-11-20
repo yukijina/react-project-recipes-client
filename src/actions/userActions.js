@@ -8,7 +8,7 @@ export const uploadingFavorite = recipes => {
 // My account page
 export const loadingUserInfo = (currentUserId) => {
     return (dispatch) => {
-        return fetch(`http://localhost:3001/api/v1/users/${currentUserId}` ,{
+        return fetch(`/api/v1/users/${currentUserId}` ,{
             credentials: "include",
             method: "GET",
             headers: {

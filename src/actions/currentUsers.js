@@ -46,7 +46,7 @@ export const signup = (userData, history) => {
 
 export const login = (userData, history) => {
     return dispatch => {
-        return fetch("http://localhost:3001/api/v1/login", {
+        return fetch("/api/v1/login", {
             credentials: 'include',
             method: "POST",
             headers: {
@@ -69,7 +69,7 @@ export const login = (userData, history) => {
 
 export const getCurrentUser = () => {
     return dispatch => {
-        return fetch("http://localhost:3001/api/v1/get_current_user", {
+        return fetch("/api/v1/get_current_user", {
             credentials: "include",
             method: "GET",
             headers: {
@@ -90,7 +90,7 @@ export const getCurrentUser = () => {
 export const logout = (event) => {
     return dispatch => {
         dispatch(clearCurrentUser)
-        return fetch("http://localhost:3001/api/v1/logout", {
+        return fetch("/api/v1/logout", {
             credentials: "include",
             method: "DELETE"
          })
