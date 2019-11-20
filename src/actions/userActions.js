@@ -8,7 +8,7 @@ export const uploadingFavorite = recipes => {
 // My account page
 export const loadingUserInfo = (currentUserId) => {
     return (dispatch) => {
-        return fetch(`/api/v1/users/${currentUserId}` ,{
+        return fetch(`https://react-rails-project-recipes.herokuapp.com/api/v1/users/${currentUserId}` ,{
             credentials: "include",
             method: "GET",
             headers: {

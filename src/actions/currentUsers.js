@@ -20,7 +20,7 @@ export const clearCurrentUser = () => {
 export const signup = (userData, history) => {
     //console.log("action", userData)
     return dispatch => {
-        return fetch("http://localhost:3001/api/v1/signup", {
+        return fetch("/api/v1/signup", {
             credentials: "include",
             method: "POST",
             headers: {
