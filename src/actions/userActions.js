@@ -9,7 +9,7 @@ export const uploadingFavorite = recipes => {
 export const loadingUserInfo = (currentUserId) => {
     const HEROKU_URL = process.env.REACT_APP_HEROKU
     return (dispatch) => {
-        return fetch(`http://localhost:3001/api/v1/users/${currentUserId}` ,{
+        return fetch(`https://react-rails-project-recipes.herokuapp.com/api/v1/users/${currentUserId}` ,{
             credentials: "include",
             method: "GET",
             headers: {

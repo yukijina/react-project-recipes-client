@@ -88,7 +88,7 @@ export const clickLike = (recipe, userId, review) => {
             api_id: recipe.recipeId,
             favorite: {like: true, review: review,user_id: userId}
         }
-        return fetch(`http://localhost:3001/api/v1/recipes` ,{
+        return fetch(`https://react-rails-project-recipes.herokuapp.com/api/v1/recipes` ,{
             credentials: "include",
             method: "POST",
             headers: {
@@ -109,7 +109,7 @@ export const loadingFavorite = (apiId) => {
     //console.log("fire loading Favorite", apiId)
     const HEROKU_URL = process.env.REACT_APP_HEROKU
     return (dispatch) => {
-        return fetch(`http://localhost:3001/api/v1/recipes` ,{
+        return fetch(`https://react-rails-project-recipes.herokuapp.com/api/v1/recipes` ,{
             credentials: "include",
             method: "GET",
             headers: {

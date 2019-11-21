@@ -21,7 +21,7 @@ export const signup = (userData, history) => {
     //console.log("action", userData)
     const HEROKU_URL = process.env.REACT_APP_HEROKU
     return dispatch => {
-        return fetch(`http://localhost:3001/api/v1/signup`, {
+        return fetch(`https://react-rails-project-recipes.herokuapp.com/api/v1/signup`, {
             credentials: "include",
             method: "POST",
             headers: {
@@ -48,7 +48,7 @@ export const signup = (userData, history) => {
 export const login = (userData, history) => {
     const HEROKU_URL = process.env.REACT_APP_HEROKU
     return dispatch => {
-        return fetch(`http://localhost:3001/api/v1/login`, {
+        return fetch(`https://react-rails-project-recipes.herokuapp.com/api/v1/login`, {
             credentials: 'include',
             method: "POST",
             headers: {
@@ -72,7 +72,7 @@ export const login = (userData, history) => {
 export const getCurrentUser = () => {
     const HEROKU_URL = process.env.REACT_APP_HEROKU
     return dispatch => {
-        return fetch(`http://localhost:3001/api/v1/get_current_user`, {
+        return fetch(`https://react-rails-project-recipes.herokuapp.com/api/v1/get_current_user`, {
             credentials: "include",
             method: "GET",
             headers: {
@@ -94,7 +94,7 @@ export const logout = (event) => {
     const HEROKU_URL = process.env.REACT_APP_HEROKU
     return dispatch => {
         dispatch(clearCurrentUser)
-        return fetch(`http://localhost:3001/api/v1/logout`, {
+        return fetch(`https://react-rails-project-recipes.herokuapp.com/api/v1/logout`, {
             credentials: "include",
             method: "DELETE"
          })
