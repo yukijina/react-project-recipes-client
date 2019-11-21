@@ -19,8 +19,9 @@ export const clearCurrentUser = () => {
 // create a new user
 export const signup = (userData, history) => {
     //console.log("action", userData)
+    const HEROKU_URL = process.env.REACT_APP_HEROKU
     return dispatch => {
-        return fetch("/api/v1/signup", {
+        return fetch(`${HEROKU_URL}/api/v1/signup`, {
             credentials: "include",
             method: "POST",
             headers: {
@@ -45,8 +46,9 @@ export const signup = (userData, history) => {
 
 
 export const login = (userData, history) => {
+    const HEROKU_URL = process.env.REACT_APP_HEROKU
     return dispatch => {
-        return fetch("/api/v1/login", {
+        return fetch(`${HEROKU_URL}/api/v1/login`, {
             credentials: 'include',
             method: "POST",
             headers: {
@@ -68,8 +70,9 @@ export const login = (userData, history) => {
 }
 
 export const getCurrentUser = () => {
+    const HEROKU_URL = process.env.REACT_APP_HEROKU
     return dispatch => {
-        return fetch("/api/v1/get_current_user", {
+        return fetch(`${HEROKU_URL}/api/v1/get_current_user`, {
             credentials: "include",
             method: "GET",
             headers: {
@@ -88,9 +91,10 @@ export const getCurrentUser = () => {
 }
 
 export const logout = (event) => {
+    const HEROKU_URL = process.env.REACT_APP_HEROKU
     return dispatch => {
         dispatch(clearCurrentUser)
-        return fetch("/api/v1/logout", {
+        return fetch(`${HEROKU_URL}/api/v1/logout`, {
             credentials: "include",
             method: "DELETE"
          })
