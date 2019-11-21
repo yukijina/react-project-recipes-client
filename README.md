@@ -8,6 +8,10 @@ After users sign up and log in, users can search recipes, add to their favorites
 
 
 ## Usage
+### See demo
+- The app is deployed to netlify.
+https://react-rails-project-recipes.netlify.com/
+
 ### Frontend with React/Redux
 - Clone and check out the repository for client side with React/Redux (this repo)
 `https://github.com/yukijina/react-project-recipes-client`
